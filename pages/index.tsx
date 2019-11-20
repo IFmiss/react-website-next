@@ -1,16 +1,16 @@
 import React from 'react'
 import { NextPage } from 'next'
-import Nav from '@components/Nav'
-
-interface HomeProps {
+import Home from '@pages/Home'
+import './../style/common.less'
+import './../style/index.less'
+interface MainProps {
   userAgent?: string
 }
 
-const Home: NextPage<HomeProps> = () => (
+const Main: NextPage<MainProps> = () => (
   <div>
-    <Nav/>
-    1111
+    <Home/>
   </div>
 )
 
-export default Home
+export default Main

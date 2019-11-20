@@ -20,11 +20,20 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
+      "@root/*": [
+        "./*"
+      ],
       "@components/*": [
         "./components/*"
       ],
       "@pages/*": [
         "./pages/*"
+      ],
+      "@style/*": [
+        "./style/*"
+      ],
+      "@constance/*": [
+        "./constance/*"
       ]
     },
     "forceConsistentCasingInFileNames": true,

@@ -1,6 +1,11 @@
 const path = require('path');
 const withLess = require('@zeit/next-less')
 
+// fix: prevents error when .less files are required by node
+if (typeof require !== 'undefined') {
+  require.extensions['.less'] = (file) => {}
+}
+
 module.exports = withLess({
   webpack(config, options) {
     config.module.rules.push({
@@ -13,10 +18,12 @@ module.exports = withLess({
     });
     config.devtool = 'cheap-module-inline-source-map';
     config.resolve.alias = {
-      ...config.resolve.alias,
+      ...(config.resolve.alias || {}),
+      '@root': path.join(__dirname, './', '/'),
       '@pages': path.join(__dirname, '.', 'pages'),
       '@components': path.join(__dirname, '.', 'components'),
       '@style': path.join(__dirname, '.', 'style'),
+      '@constance': path.join(__dirname, '.', 'constance'),
     }
     return config
   },
