@@ -30,7 +30,7 @@
       .nav-title {
         cursor: default;
         font-size: 26px;
-        .mixinPrimaryColor();
+        color: var(--primary-color);
         font-weight: 400;
         transition: color 0.3s;
       }
@@ -52,10 +52,11 @@
         transition: all 0.3s;
         overflow: hidden;
         font-size: 14px;
-        .mixinTextColor();
+        color: var(--text-color);
         transition: color, background-color 0.3s;
         &:hover {
-          .mixinBgNavActive();
+          color: var(--primary-color);
+	        background-color: var(--bg-nav-active);
         }
         &::before {
           content: '';
@@ -70,7 +71,7 @@
           transform: translate(-50%, 400%);
         }
         &.active {
-          .mixinTextColorActive();
+          color: var(--text-color-active);
           &::before {
             width: 50%;
             transform: translate(-50%, 0);
@@ -79,9 +80,4 @@
       }
     }
   }
-}
-
-
-body {
-  background: red;
 }
