@@ -38,6 +38,7 @@ module.exports = withPlugins(
         '@components': path.join(__dirname, '.', 'components'),
         '@style': path.join(__dirname, '.', 'style'),
         '@constance': path.join(__dirname, '.', 'constance'),
+        '@utils': path.join(__dirname, '.', 'utils'),
       }
       return config
     },

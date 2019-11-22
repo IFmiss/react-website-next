@@ -3,7 +3,7 @@ import { PROJECT_NAME, COPY_RIGHT_CONFIG } from '@constance/index'
 import classNames from 'classnames'
 import './copy-right.less';
 import Link from 'next/link'
-const { formatDate } = require('d-utils/lib/genericUtils')
+import { formatDate } from '@utils/utils'
 // import { NextPage } from 'next'
 
 const CopyRight = () => {
@@ -12,7 +12,7 @@ const CopyRight = () => {
   })
 
   return (
-    <div className={classString}>
+    <footer className={classString}>
       <span className={`${classString}-info list`}>© 2016 - { formatDate('yyyy', new Date()) } from dw</span>
       <React.Fragment>
         {
@@ -27,7 +27,7 @@ const CopyRight = () => {
           ))
         }
       </React.Fragment>
-    </div>
+    </footer>
   )
 }
 

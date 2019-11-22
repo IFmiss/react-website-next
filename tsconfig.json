@@ -34,6 +34,9 @@
       ],
       "@constance/*": [
         "./constance/*"
+      ],
+      "@utils/*": [
+        "./utils/*"
       ]
     },
     "forceConsistentCasingInFileNames": true,

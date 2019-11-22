@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
+import classNames from 'classnames'
 import { NextPage } from 'next'
 import Nav from '@components/Nav'
 import CopyRight from '@components/CopyRight'
@@ -10,6 +11,9 @@ interface LayoutProps {
 }
 
 const Layout: NextPage<LayoutProps> = (props) => {
+  const classStringContainer = classNames({
+    'dw-page-router': true
+  })
   console.log('Layout', props.title)
   return (
     <div>
@@ -21,7 +25,9 @@ const Layout: NextPage<LayoutProps> = (props) => {
       <header>
         <Nav/>
       </header>
-      {props.children}
+      <div id="dw-react-web-container" className={classStringContainer}>
+        {props.children}
+      </div>
       <CopyRight/>
     </div>
   )
