@@ -1,13 +1,14 @@
 import React from 'react'
-import Link from 'next/link'
 import classNames from 'classnames'
-import { HomeNav } from '@constance/nav'
 import './nav.less'
-import { PROJECT_NAME, WEBSITE_TITLE } from '@constance/index' 
+import {
+  PROJECT_NAME,
+  WEBSITE_TITLE
+} from '@constance/index' 
+
+import Switch from '@components/Switch'
 
 const Nav = () => {
-  const lists = HomeNav
-
   const classString = classNames({
     [`${PROJECT_NAME}-nav`]: true
   })
@@ -18,18 +19,9 @@ const Nav = () => {
         <div className="nav-logo">
           <h2 className="nav-title">{WEBSITE_TITLE}</h2>
         </div>
-        <div className="nav-lists">
-          {
-            lists.slice().map((item: any) => {
-              return (
-                <Link href={item.link}
-                      key={item.key}>
-                  <a className="nav-list">{item.name}</a>
-                </Link>
-              )
-            })
-          }
-        </div>
+        <span>
+          <Switch/>
+        </span>
       </div>
     </nav>
   )

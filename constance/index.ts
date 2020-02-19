@@ -1,4 +1,4 @@
-export const PROJECT_NAME = 'dw-react-web'
+export const PROJECT_NAME = 'react-next-web'
 export const WEBSITE_TITLE = 'D.w'
 export const TITLE = '未曾遗忘的青春 | web前端_技术分享_戴伟的个人网站'
 export const TITLE_ENTRY = 'ヽ(✿ﾟ▽ﾟ)ノ 欢迎回来'

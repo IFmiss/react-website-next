@@ -1,14 +1,12 @@
 import React from 'react'
 import { NextPage } from 'next'
-import Home from '@pages/Home'
+import Blog from '@root/pages/Blog'
 interface MainProps {
   userAgent?: string
 }
 
 const Main: NextPage<MainProps> = () => (
-  <div>
-    <Home/>
-  </div>
+  <Blog/>
 )
 
 export default Main
