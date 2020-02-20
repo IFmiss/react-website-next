@@ -32,6 +32,26 @@ const Blog: NextPage<BlogProps> = () => {
       <div>hello this is blog111</div>
       <div>hello this is blog111</div>
       <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+
+      <div>hello this is blog111</div>
+
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
+      <div>hello this is blog111</div>
     </Layout>
   )
 }

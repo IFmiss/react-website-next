@@ -1,23 +1,16 @@
 .@{project-prefix}-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: @nav-height;
-  z-index: @z-index-nav;
-  overflow: hidden;
-  // .mixinBgNav();
-  background: transparent;
-  box-shadow: 1px 1px 25px 0 var(--shadow-color);
   transition: background-color , color, box-shadow 0.3s;
+  height: @nav-height;
+  position: relative;
   .nav-content {
-    width: @container-width;
+    max-width: @container-width;
     margin: 0 auto;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 1;
+    padding: 0 @padding;
     .nav-logo {
       flex: 0 0 150px;
       display: flex;

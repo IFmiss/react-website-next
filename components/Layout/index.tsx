@@ -2,7 +2,6 @@ import Head from 'next/head'
 import React from 'react'
 import classNames from 'classnames'
 import { NextPage } from 'next'
-import CopyRight from '@components/CopyRight'
 
 interface LayoutProps {
   children: any;
@@ -24,7 +23,6 @@ const Layout: NextPage<LayoutProps> = (props) => {
       <div id="dw-react-web-container" className={classStringContainer}>
         {props.children}
       </div>
-      <CopyRight/>
     </div>
   )
 }
