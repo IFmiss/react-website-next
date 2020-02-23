@@ -6,7 +6,7 @@ import {
   WEBSITE_TITLE
 } from '@constance/index' 
 
-import Switch from '@components/Switch'
+import Theme from '@components/Theme'
 
 const Nav = () => {
   const classString = classNames({
@@ -20,7 +20,7 @@ const Nav = () => {
           <h2 className="nav-title">{WEBSITE_TITLE}</h2>
         </div>
         <span>
-          <Switch/>
+          <Theme/>
         </span>
       </div>
     </nav>

@@ -1,59 +1,17 @@
 import React from 'react'
-import { NextPage } from 'next'
-import Layout from '@components/Layout'
-import BlogList from '@module/blog.list'
 
-interface BlogProps {}
+import {
+  NextPage
+} from 'next'
 
-const Blog: NextPage<BlogProps> = () => {
-  console.log('blog')
+interface BlogDetailProps {
+  id?: number
+}
+
+const BlogDetail: NextPage<BlogDetailProps, {}> = ({ id }) => {
   return (
-    <Layout title='this is Blog'>
-      <BlogList/>
-      <div>hello this is blog111</div>
-
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-
-      <div>hello this is blog111</div>
-
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-
-      <div>hello this is blog111</div>
-
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-      <div>hello this is blog111</div>
-    </Layout>
+    <div>1111</div>
   )
 }
 
-export default Blog
+export default BlogDetail
