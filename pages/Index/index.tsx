@@ -11,7 +11,9 @@ import {
 
 import http from '@utils/http'
 
-import API from '@constance/api'
+import {
+  ARTICLE_LISTS
+} from '@constance/api'
 
 import './blog.less'
 
@@ -38,7 +40,10 @@ const Blog: NextPage<BlogProps, {}> = ({ lists }) => {
 }
 
 Blog.getInitialProps = async (ctx) => {
-  const res = await http.get(API.article_lists)
+  console.log(ARTICLE_LISTS)
+  const res = await http.get(ARTICLE_LISTS, {
+    body: JSON.stringify({ page: 0, size: 666, type: '全部' })
+  })
   return {
     lists: res.result
   }
