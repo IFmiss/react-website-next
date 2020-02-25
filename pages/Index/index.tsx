@@ -9,27 +9,23 @@ import {
   PROJECT_NAME
 } from '@constance/index'
 
-import fetch from 'unfetch'
+import http from '@utils/http'
+
+import API from '@constance/api'
 
 import './blog.less'
 
 interface BlogProps {
-  a?: string
+  lists?: Array<any>
 }
 
-const Blog: NextPage<BlogProps, {}> = ({ a }) => {
+const Blog: NextPage<BlogProps, {}> = ({ lists }) => {
   const classString = classNames({
     [`${PROJECT_NAME}-blog`]: true
   })
 
   useEffect(() => {
-    console.log('blog')
-    const fetcthBlogLists = async () => {
-      const res = await fetch('http://127.0.0.1:4000/article/detail/36')
-      const json = await res.json()
-      console.log(json)
-    }
-    fetcthBlogLists()
+    console.log(lists)
   }, [])
 
   return (
@@ -42,9 +38,9 @@ const Blog: NextPage<BlogProps, {}> = ({ a }) => {
 }
 
 Blog.getInitialProps = async (ctx) => {
-  console.log('ctx', ctx)
+  const res = await http.get(API.article_lists)
   return {
-    a: '111'
+    lists: res.result
   }
 }
 

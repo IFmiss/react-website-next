@@ -35,57 +35,6 @@ export const DEFAULT_BLOG_DETAIL = {
   }
 }
 
-// export const TYPE_WRITER: ITypeWriterList[] = [
-//   {
-//     text: '嗨!',
-//     tagName: 'h1',
-//     config: {},
-//     domAttr: {},
-//     reactAttr: {}
-//   }, {
-//     text: '欢迎来到我的个人网站，这也是我个人的第三版网站',
-//     tagName: 'h2',
-//     config: {},
-//     domAttr: {},
-//     reactAttr: {}
-//   }, {
-//     text: '自我介绍一下',
-//     tagName: 'h2',
-//     config: {},
-//     domAttr: {},
-//     reactAttr: {}
-//   }, {
-//     text: '90后，来自安徽芜湖，现在在上海工作，从事前端开发，个人比较活泼开朗吧，没事学学技术，打打游戏听听歌',
-//     tagName: 'h4',
-//     config: {},
-//     domAttr: {},
-//     reactAttr: {}
-//   }, {
-//     text: '说到听歌，给大家推荐一个个人收藏的歌单',
-//     tagName: 'span',
-//     config: {},
-//     domAttr: {},
-//     reactAttr: {}
-//   }, {
-//     text: `《${SELF_SHEET_INFO.name}》`,
-//     tagName: 'span',
-//     config: {},
-//     domAttr: {
-//       class: 'underline',
-//       click: async () => {
-//         // await playDefaultSheet()
-//       }
-//     },
-//     reactAttr: {
-//       className: 'underline',
-//       onClick: async () => {
-//         // await playDefaultSheet()
-//       }
-//     }
-//   }
-// ]
-
-
 export const MUSIC_SHEET_DEFAULT_LIMIT = 30
 export const MUSIC_SHEET_TRANSITION_DURATION = MUSIC_SHEET_DEFAULT_LIMIT * 200 / 2
 
@@ -122,8 +71,9 @@ export const COPY_RIGHT_CONFIG = [
   {
     name: 'd-utils',
     to: 'https://d-utils.daiwei.site'
-  }, {
-    name: '友情链接',
-    to: '/interlink'
   }
+  // , {
+  //   name: '友情链接',
+  //   to: '/interlink'
+  // }
 ]

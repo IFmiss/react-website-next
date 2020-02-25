@@ -30,17 +30,29 @@ module.exports = withPlugins(
           path.resolve('pages'),
         ],
       });
+
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: {
+          loader: 'svg-sprite-loader',
+          options: {
+            symbolId: '[name]'
+          }
+        },
+        include: path.resolve(__dirname, 'src/assets')
+      });
+
       config.devtool = 'cheap-module-inline-source-map';
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
         '@root': path.join(__dirname, './', '/'),
-        '@pages': path.join(__dirname, '.', 'pages'),
-        '@components': path.join(__dirname, '.', 'components'),
-        '@style': path.join(__dirname, '.', 'style'),
-        '@constance': path.join(__dirname, '.', 'constance'),
-        '@utils': path.join(__dirname, '.', 'utils'),
-        '@module': path.join(__dirname, '.', 'module'),
-        '@assets': path.join(__dirname, '.', 'assets'),
+        '@pages': path.join(__dirname, 'pages'),
+        '@components': path.join(__dirname, 'components'),
+        '@style': path.join(__dirname, 'style'),
+        '@constance': path.join(__dirname, 'constance'),
+        '@utils': path.join(__dirname, 'utils'),
+        '@module': path.join(__dirname, 'module'),
+        '@assets': path.join(__dirname, 'assets'),
       }
       return config
     },
