@@ -1,4 +1,7 @@
-import fetch from 'isomorphic-unfetch'
+import fetch, {
+  RequestInfo,
+  RequestInit
+} from 'node-fetch'
 
 // 200 成功
 // 100001 失败
