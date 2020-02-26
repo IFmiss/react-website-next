@@ -32,6 +32,8 @@ const Theme: React.FC<IThemeProps> = ({ type = 'default' }) => {
   const [theme, setTheme] = useState<ThemeType>('default')
 
   const selectTheme = (name: ThemeType) => {
+    if (name === theme) return
+
     const ele = document.getElementById('dw-next-container')
     if (!ele) return
 
