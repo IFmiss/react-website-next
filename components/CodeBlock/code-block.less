@@ -1,0 +1,35 @@
+.highlight-block {
+  overflow: auto;
+  margin: 0 8px;
+
+  border-radius: 3px;
+  color: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+  pre {
+    padding: 5px 10px!important;
+    overflow: auto!important;
+    margin: 0!important;
+  }
+}
+
+.react-next-wrapper.theme-dark {
+  .highlight-block {
+    border: 1px solid transparent;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .react-next-wrapper.theme-default {
+    .highlight-block {
+      border: 1px solid transparent;
+    }
+  }
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}

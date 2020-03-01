@@ -55,6 +55,7 @@ const Blog: NextPage<BlogProps, {}> = ({ blogInfo: { lists } }) => {
 }
 
 Blog.getInitialProps = async (ctx) => {
+  console.log(ctx)
   const params = new URLSearchParams({ page: '0', size: '666', type: '全部' })
   const res = await http.get(`${ARTICLE_LISTS}?${params}`, {})
   return {

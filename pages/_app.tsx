@@ -1,6 +1,7 @@
 import React from 'react'
 import App from 'next/app'
 import classNames from 'classnames'
+import '@assets/svg'
 import  '@style/index.less'
 import Nav from '@root/components/Nav'
 import CopyRight from '@root/components/CopyRight'

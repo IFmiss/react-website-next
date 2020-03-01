@@ -8,8 +8,9 @@ import {
   removeClass,
   addClass
 } from '@utils/utils'
+import './theme.less'
 
-type ThemeType = 'default' | 'dark' | 'light'
+export type ThemeType = 'default' | 'dark' | 'light'
 
 interface IThemeProps {
   type?: ThemeType
@@ -25,11 +26,17 @@ const ThemeLists: Array<{type: ThemeType}> = [{
 ]
 
 const Theme: React.FC<IThemeProps> = ({ type = 'default' }) => {
+  let t: any = null
   const classThemeWrapper = classNames({
     [`${PROJECT_NAME}-comp-theme`]: true
   })
-
   const [theme, setTheme] = useState<ThemeType>('default')
+  const [show, setShow] = useState(false)
+
+  const currentMainClass = classNames({
+    [`${classThemeWrapper}-main`]: true,
+    ['active']: show
+  })
 
   const selectTheme = (name: ThemeType) => {
     if (name === theme) return
@@ -42,6 +49,9 @@ const Theme: React.FC<IThemeProps> = ({ type = 'default' }) => {
 
     localStorage.setItem('theme', name)
     setTheme(name)
+
+    setShow(false)
+    t && clearTimeout(t)
   }
 
   useEffect(() => {
@@ -51,16 +61,27 @@ const Theme: React.FC<IThemeProps> = ({ type = 'default' }) => {
     }
   }, [])
 
+  const showTheme = () => {
+    t && clearTimeout(t)
+    setShow(true)
+    t = setTimeout(() => {
+      setShow(false)
+    }, 5000)
+  }
+
   return (
     <div className={classThemeWrapper}>
-      <div className={`${classThemeWrapper}-mian`}>{theme}</div>
-      <div className={`${classThemeWrapper}-select`}>
-        {
-          ThemeLists.map(item => (
-            <span onClick={selectTheme.bind(null, item.type)}
-                  key={item.type}>{item.type}</span>
-          ))
-        }
+      <div className={currentMainClass}>
+        <div className={`${classThemeWrapper}-main-select`}>
+          {
+            ThemeLists.map(item => (
+              <span className={`square ${item.type}`}
+                    onClick={selectTheme.bind(null, item.type)}
+                    key={item.type}></span>
+            ))
+          }
+        </div>
+        <span className='square current' onClick={showTheme}></span>
       </div>
     </div>
   )

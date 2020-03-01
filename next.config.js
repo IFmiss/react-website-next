@@ -37,9 +37,10 @@ module.exports = withPlugins(
           loader: 'svg-sprite-loader',
           options: {
             symbolId: '[name]'
+            // symbolId: filePath => path.basename(filePath)
           }
         },
-        include: path.resolve(__dirname, 'src/assets')
+        include: path.resolve(__dirname, 'assets/svg')
       });
 
       config.devtool = 'cheap-module-inline-source-map';
