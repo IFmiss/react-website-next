@@ -12,7 +12,6 @@ const Layout: NextPage<LayoutProps> = (props) => {
   const classStringContainer = classNames({
     'dw-page-router': true
   })
-  console.log('Layout', props.title)
   return (
     <div>
       <Head>

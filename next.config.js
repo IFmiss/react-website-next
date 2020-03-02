@@ -21,6 +21,7 @@ module.exports = withPlugins(
       javascriptEnabled: true,
       modifyVars: themeVariables
     },
+    distDir: '_next',
     webpack(config, options) {
       config.module.rules.push({
         test: /\.js$/,
