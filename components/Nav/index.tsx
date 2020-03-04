@@ -6,7 +6,7 @@ import {
   WEBSITE_TITLE
 } from '@constance/index' 
 
-import Theme from '@components/Theme'
+// import Theme from '@components/Theme'
 
 const Nav = () => {
   const classString = classNames({
@@ -19,9 +19,9 @@ const Nav = () => {
         <div className="nav-logo">
           <h2 className="nav-title">{WEBSITE_TITLE}</h2>
         </div>
-        <span>
+        {/* <span>
           <Theme/>
-        </span>
+        </span> */}
       </div>
     </nav>
   )
