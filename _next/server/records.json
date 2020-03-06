@@ -6,7 +6,9 @@
       "multi private-next-pages/Index/index.tsx": 2,
       "multi private-next-pages/_app.tsx": 3,
       "multi private-next-pages/_error.tsx": 4,
-      "multi next/dist/pages/_document": 5
+      "multi next/dist/pages/_document": 5,
+      "multi next/dist/pages/_app": 0,
+      "multi next/dist/pages/_error": 1
     },
     "usedIds": {
       "0": 0,
@@ -27,13 +29,6 @@
       "static/EjZyus8Bv5ZhQJFUzi1Nq/pages/_error.js": 5
     },
     "bySource": {},
-    "usedIds": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ]
+    "usedIds": []
   }
 }
