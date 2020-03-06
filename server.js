@@ -33,10 +33,10 @@ app.prepare().then(() => {
     console.log(e)
   }
   // 如果没有配置nginx做静态文件服务，下面代码请务必开启
-  router.get('*', async ctx => {
-    await handle(ctx.req, ctx.res)
-    ctx.respond = false
-  })
+  // router.get('*', async ctx => {
+  //   await handle(ctx.req, ctx.res)
+  //   ctx.respond = false
+  // })
 
   server.use(router.routes())
 
