@@ -2,6 +2,7 @@ const Koa = require('koa')
 const next = require('next')
 const Router = require('koa-router')
 const dev = process.env.NODE_ENV !== 'production';
+const bodyParser = require('koa-bodyparser');
 const app = next({ dev });
 
 // const middleware = require('./middleware')
@@ -35,9 +36,10 @@ app.prepare().then(() => {
     ctx.respond = false;
   })
 
+  server.use(bodyParser())
   server.use(router.routes())
 
-  const PORT = 9999
+  const PORT = 1993
 
   server.listen(PORT, () => {
     console.log(`server is running at http://localhost:${PORT}`);
