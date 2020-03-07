@@ -36,6 +36,7 @@ module.exports = withPlugins(
       javascriptEnabled: true,
       modifyVars: themeVariables
     },
+    pageExtensions: ['jsx', 'js', 'tsx'],
     distDir: '_next',
     useFileSystemPublicRoutes: false,
     webpack(config, options) {
@@ -84,7 +85,7 @@ module.exports = withPlugins(
     //   isDev: process.env.NODE_ENV !== 'production' // Pass through env variables
     // },
     // env: {
-    //   SERVER_HOST: '127.0.0.1:8080'
+    //   SERVER_HOST: '127.0.0.1:4002'
     // },
     // prot: {
     //   SERVER_HOST: ''
