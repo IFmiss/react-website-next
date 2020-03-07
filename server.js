@@ -39,7 +39,7 @@ app.prepare().then(() => {
   server.use(router.routes())
         .use(router.allowedMethods());
 
-  const PORT = 1993
+  const PORT = process.env.PORT || 1993
 
   server.listen(PORT, () => {
     console.log(`server is running at http://localhost:${PORT}`);
