@@ -24,7 +24,7 @@ app.prepare().then(() => {
   
     router.get('/blog/detail/:id', async (ctx) => {
       const { id } = ctx.params
-      await app.render(ctx.req, ctx.res, `/blog/detail/${id}`, ctx.query)
+      await app.render(ctx.req, ctx.res, `/blog/detail`, { id })
     })
   } catch (e) {
     console.log(e)
@@ -38,6 +38,7 @@ app.prepare().then(() => {
 
   server.use(bodyParser())
   server.use(router.routes())
+        .use(router.allowedMethods());
 
   const PORT = 1993
 

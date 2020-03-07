@@ -38,7 +38,7 @@ const BlogList: React.FC<BlogListProps> = ({ list }) => {
 
   return (
     <li className={classString}>
-      <Link href={`/blog/detail?id=${list.id}`}>
+      <Link href={`/blog/detail/${list.id}`}>
         <a>
           <h2 className={`${classString}-title`}>{list.name}</h2>
           <div className={`${classString}-conf`}>
