@@ -37,6 +37,7 @@ module.exports = withPlugins(
       modifyVars: themeVariables
     },
     distDir: '_next',
+    assetPrefix: 'web_next',
     useFileSystemPublicRoutes: false,
     webpack(config, options) {
       HACK_removeMinimizeOptionFromCssLoaders(config);
