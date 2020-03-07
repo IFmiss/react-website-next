@@ -23,8 +23,7 @@ app.prepare().then(() => {
     })
   
     router.get('/blog/detail/:id', async (ctx) => {
-      const { id } = ctx.params
-      await app.render(ctx.req, ctx.res, `/blog/detail`, { id })
+      await app.render(ctx.req, ctx.res, `/blog/detail`, {id: ctx.params.id})
     })
   } catch (e) {
     console.log(e)
