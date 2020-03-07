@@ -1,0 +1,141 @@
+.@{blog-prefix}-detail {
+  padding: 0 0 40px 0;
+  &-entry {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &-prev, &-next {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    &-prev {
+      margin-right: 20px!important;
+    }
+    &-next {
+      margin-left: 20px!important;
+      text-align: right;
+    }
+  }
+
+  @media screen and (max-width: 414px) {
+    p, li, a {
+      font-size: 13px;
+    }
+
+    code, pre {
+      font-size: 13px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 26px;
+    }
+    
+    h3 {
+      font-size: 24px;
+    }
+
+    h4 {
+      font-size: 20px;
+    }
+
+    h5 {
+      font-size: 18px;
+    }
+
+    h6 {
+      font-size: 16px;
+    }
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 10px auto;
+    border-radius: 4px;
+  }
+  
+  textarea {
+    font-family: 'PingFangSC-Medium', 'Microsoft YaHei', 'Avenir', Helvetica, Arial, sans-serif;
+  }
+  
+  p, li {
+    color: var(--text-color);
+  }
+  
+  a:hover {
+    color: var(--primary-color);
+  }
+  
+  a {
+    color: var(--text-color);
+    text-decoration: underline;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+  }
+  
+  input[type=text],
+  input[type=password],
+  textarea,
+  select {
+    border: 1px solid var(--border-color-deep);
+  }
+  
+  table tr:hover {
+    background: var(--bg-nav-active);
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+  }
+  table td, .table th {
+    border-left: 1px solid var(--border-color-deep);
+    border-top: 1px solid var(--border-color-deep);
+    padding: 10px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: var(--primary-color);
+    border-top: none;
+    color: #fff;
+    padding: 5px;
+  }
+  
+  .pane, .inputPane {
+    margin-top: 5px;
+    padding: 0.6em;
+    border: 1px solid var(--border-color-deep);
+    overflow: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--h-color);
+    font-weight: 400;
+    margin-top: 1em;
+  }
+  
+  h1, h2 {
+    border-bottom: 1px solid var(--border-color-deep);
+    padding-bottom: 10px;
+  }
+
+  li {
+    line-height: 1.7;
+    list-style-type: disc!important;
+    > li {
+      list-style-type: circle!important;
+    }
+  }
+}
