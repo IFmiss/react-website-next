@@ -22,7 +22,6 @@ module.exports = withPlugins(
       modifyVars: themeVariables
     },
     webpack(config, options) {
-      HACK_removeMinimizeOptionFromCssLoaders(config);
       config.module.rules.push({
         test: /\.js$/,
         enforce: 'pre',
