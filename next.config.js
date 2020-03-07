@@ -36,9 +36,6 @@ module.exports = withPlugins(
       javascriptEnabled: true,
       modifyVars: themeVariables
     },
-    pageExtensions: ['jsx', 'js', 'tsx'],
-    distDir: '_next',
-    useFileSystemPublicRoutes: false,
     webpack(config, options) {
       HACK_removeMinimizeOptionFromCssLoaders(config);
       config.module.rules.push({
@@ -50,17 +47,17 @@ module.exports = withPlugins(
         ],
       });
 
-      config.module.rules.push({
-        test: /\.svg$/,
-        use: {
-          loader: 'svg-sprite-loader',
-          options: {
-            symbolId: '[name]'
-            // symbolId: filePath => path.basename(filePath)
-          }
-        },
-        include: path.resolve(__dirname, 'assets/svg')
-      });
+      // config.module.rules.push({
+      //   test: /\.svg$/,
+      //   use: {
+      //     loader: 'svg-sprite-loader',
+      //     options: {
+      //       symbolId: '[name]'
+      //       // symbolId: filePath => path.basename(filePath)
+      //     }
+      //   },
+      //   include: path.resolve(__dirname, 'assets/svg')
+      // });
 
       config.devtool = 'cheap-module-inline-source-map';
       config.resolve.alias = {

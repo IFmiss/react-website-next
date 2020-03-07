@@ -56,10 +56,11 @@ const Icon: React.FC<IIconProps> = (props) => {
 
   return (
     <div className={classString}>
-      <svg style={svgStyle} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
+      {/* <svg style={svgStyle} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
         <use xlinkHref={`#${props.svgId}`} fill={color}></use>
       </svg>
-      {props.children}
+      {props.children} */}
+      <div>1</div>
     </div>
   )
 }
