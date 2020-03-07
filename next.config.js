@@ -3,7 +3,6 @@ const fs = require('fs')
 const withLess = require('@zeit/next-less')
 const lessToJS = require('less-vars-to-js')
 const withPlugins = require("next-compose-plugins");
-const withTypescript = require('@zeit/next-typescript')
 
 const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, './style/val.less'), 'utf8')
@@ -31,8 +30,7 @@ function HACK_removeMinimizeOptionFromCssLoaders(config) {
 
 module.exports = withPlugins(
   [
-    withLess,
-    withTypescript
+    withLess
   ], {
     lessLoaderOptions: {
       javascriptEnabled: true,
