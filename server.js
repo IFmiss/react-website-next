@@ -22,11 +22,12 @@ app.prepare().then(() => {
       await app.render(ctx.req, ctx.res, `/blog`)
     })
   
-    router.get('/blog/detail/:id', async (ctx) => {
-      await app.render(ctx.req, ctx.res, `/blog/detail`, {id: ctx.params.id})
+    router.get('/blog/detail', async (ctx) => {
+      console.log('ctx.detail id', ctx.query.id)
+      await app.render(ctx.req, ctx.res, `/blog/detail`, {id: ctx.query.id})
     })
   } catch (e) {
-    console.log(e)
+    console.log('e-----e', e)
   }
   // 如果没有配置nginx做静态文件服务，下面代码请务必开启
   router.get('*', async ctx => {

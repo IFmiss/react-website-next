@@ -2,11 +2,12 @@ import {
   NextPage
 } from 'next'
 
-const Error: NextPage<any, any> = ({ statusCode }) => {
+const Error: NextPage<any, any> = (props) => {
+  console.log('err', props)
   return (
     <p>
-      {statusCode
-        ? `An error ${statusCode} occurred on server`
+      {props.statusCode
+        ? `An error ${props.statusCode} occurred on server`
         : 'An error occurred on client'}
     </p>
   )
