@@ -1,5 +1,10 @@
 .@{blog-prefix}-detail {
   padding: 0 0 40px 0;
+  &-title {
+    color: var(--text-color-active);
+    margin-top: 0;
+    border-bottom: 1px solid --var(--border-color-deep);
+  }
   &-entry {
     margin-top: 30px;
     display: flex;
@@ -30,27 +35,27 @@
     }
 
     h1 {
-      font-size: 28px;
-    }
-
-    h2 {
-      font-size: 26px;
-    }
-    
-    h3 {
       font-size: 24px;
     }
 
-    h4 {
+    h2 {
+      font-size: 22px;
+    }
+    
+    h3 {
       font-size: 20px;
     }
 
-    h5 {
+    h4 {
       font-size: 18px;
     }
 
-    h6 {
+    h5 {
       font-size: 16px;
+    }
+
+    h6 {
+      font-size: 14px;
     }
   }
 
@@ -63,7 +68,7 @@
   }
   
   textarea {
-    font-family: 'PingFangSC-Medium', 'Microsoft YaHei', 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: 'PingFangSC-Regular', 'Microsoft YaHei', 'Avenir', Helvetica, Arial, sans-serif;
   }
   
   p, li {

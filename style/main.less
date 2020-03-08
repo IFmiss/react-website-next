@@ -3,24 +3,16 @@
   position: relative;
 }
 
+@light_main: #158a4c;
+@dark_main: pink;
+
 :root {
-  --shadow-color: #f0f0f0;
-  --border-color: rgba(33, 33, 33, 0.03);
-  --primary-color: #158a4c;
-  --text-color: #666;
-  --text-color-active: #333;
-  --bg-nav: #fff;
-  --bg-nav-hover: #fafafa;
-  --bg: #fff;
-}
-
-.react-next-wrapper.theme-default {
   --auto-color: #aaa;
   --scroll-color: #f2f2f2;
   --shadow-color: #f0f0f0;
   --border-color: rgba(33, 33, 33, 0.03);
   --border-color-deep: rgba(33, 33, 33, 0.2);
-  --primary-color: green;
+  --primary-color: @light_main;
   --text-color: #666;
   --text-color-active: #333;
   --bg-nav: #fff;
@@ -29,50 +21,16 @@
   --bg: #fff;
   --o-bg: rgba(255, 255, 255, 0.4);
   --h-color: #333;
-}
-
-.react-next-wrapper.theme-light {
-  --auto-color: #aaa;
-  --scroll-color: #f2f2f2;
-  --shadow-color: #f0f0f0;
-  --border-color: rgba(33, 33, 33, 0.03);
-  --border-color-deep: rgba(33, 33, 33, 0.2);
-  --primary-color: green;
-  --text-color: #666;
-  --text-color-active: #333;
-  --bg-nav: #fff;
-  --bg-nav-active: #fafafa;
-  --mask-bg: rgba(244,244,244,0.3);
-  --bg: #fff;
-  --o-bg: rgba(255, 255, 255, 0.4);
-  --h-color: #333;
-}
-
-.react-next-wrapper.theme-dark {
-  --auto-color: #999;
-  --scroll-color: #666;
-  --shadow-color: #0e0e0f;
-  --border-color: rgba(222, 222, 222, 0.03);
-  --border-color-deep: rgba(222, 222, 222, 0.2);
-  --primary-color: pink;
-  --text-color: #999;
-  --text-color-active: #eee;
-  --bg-nav: #1e1e22;
-  --bg-nav-active: #1a1a1d;
-  --mask-bg: rgba(0,0,0,0.3);
-  --o-bg: rgba(0, 0, 0, 0.4);
-  --bg: #201e1e;
-  --h-color: #eee;
 }
 
 @media (prefers-color-scheme: dark) {
-  .react-next-wrapper.theme-default {
+  :root {
     --auto-color: #999;
     --scroll-color: #666;
     --shadow-color: #0e0e0f;
     --border-color: rgba(222, 222, 222, 0.03);
     --border-color-deep: rgba(222, 222, 222, 0.2);
-    --primary-color: pink;
+    --primary-color: @dark_main;
     --text-color: #999;
     --text-color-active: #eee;
     --bg-nav: #1e1e22;
@@ -82,19 +40,16 @@
     --bg: #201e1e;
     --h-color: #eee;
   }
-  :root {
-    --bg: #201e1e;
-  }
 }
 
 @media (prefers-color-scheme: light) {
-  .react-next-wrapper.theme-default {
+  :root {
     --auto-color: #aaa;
     --scroll-color: #f2f2f2;
     --shadow-color: #f0f0f0;
     --border-color: rgba(33, 33, 33, 0.03);
     --border-color-deep: rgba(33, 33, 33, 0.2);
-    --primary-color: green;
+    --primary-color: @light_main;
     --text-color: #666;
     --text-color-active: #333;
     --bg-nav: #fff;
@@ -104,32 +59,10 @@
     --o-bg: rgba(255, 255, 255, 0.4);
     --h-color: #333;
   }
-  :root {
-    --bg: #fff;
-  }
 }
 
 body {
   transition: padding 0.3s, background-color 0.3s;
-  &.sider-s {
-    padding-right: @side-warp-width - 16px;
-  }
-}
-
-body.light {
-  --bg: #fff;
-  --bg-o: rgba(255,255,255,0.77);
-  --text-color: #666;
-  --text-color-active: #333;
-  --shadow-color: #f0f0f0;
-}
-
-body.dark {
-  --bg: #201e1e;
-  --bg-o: rgb(32, 30, 30, 0.77);
-  --text-color: #999;
-  --text-color-active: #eee;
-  --shadow-color: #0e0e0f;
 }
 
 .react-next-wrapper {
@@ -139,12 +72,15 @@ body.dark {
   transition: padding 0.3s, background-color 0.3s;
 }
 
+#dw-react-web-container {
+  padding: 0 15px;
+}
+
 .react-next-content {
   width: 100%;
   max-width: @container-width;
   margin: 0 auto;
   transition: background-color 0.3s;
-  padding: 0 @padding;
   a {
     cursor: pointer;
   }

@@ -18,10 +18,10 @@ const CopyRight = () => {
         {
           COPY_RIGHT_CONFIG.map((item) => (
             item.to.includes('http') ? (
-              <a className="list" target="_black" key={item.name} href={item.to}>{item.name}</a>
+              <a className="list" title={item.name} target="_black" key={item.name} href={item.to}>{item.name}</a>
             ) : (
               <Link key={item.name} href={item.to}>
-                <a className="list">{item.name}</a>
+                <a className="list" title={item.name}>{item.name}</a>
               </Link>
             )
           ))

@@ -5,8 +5,7 @@ import {
   PROJECT_NAME,
   WEBSITE_TITLE
 } from '@constance/index' 
-
-// import Theme from '@components/Theme'
+import Link from 'next/link'
 
 const Nav = () => {
   const classString = classNames({
@@ -17,11 +16,10 @@ const Nav = () => {
     <nav className={ classString }>
       <div className="nav-content">
         <div className="nav-logo">
-          <h2 className="nav-title">{WEBSITE_TITLE}</h2>
+          <Link href="/">
+            <h2 className="nav-title">{WEBSITE_TITLE}</h2>
+          </Link>
         </div>
-        {/* <span>
-          <Theme/>
-        </span> */}
       </div>
     </nav>
   )

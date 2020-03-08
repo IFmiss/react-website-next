@@ -6,6 +6,8 @@ import { NextPage } from 'next'
 interface LayoutProps {
   children: any;
   title?: string;
+  desc?: string;
+  keywords?: string;
 }
 
 const Layout: NextPage<LayoutProps> = (props) => {
@@ -13,16 +15,18 @@ const Layout: NextPage<LayoutProps> = (props) => {
     'dw-page-router': true
   })
   return (
-    <div>
+    <>
       <Head>
         <title>{props.title}</title>
         <meta charSet='utf-8' />
+        <meta name="description" content={props.desc}/>
+        <meta name="Keywords" content={props.keywords}/>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       <div id="dw-react-web-container" className={classStringContainer}>
         {props.children}
       </div>
-    </div>
+    </>
   )
 }
 

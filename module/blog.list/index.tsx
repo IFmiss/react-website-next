@@ -4,12 +4,7 @@ import React, {
 import { PROJECT_NAME } from '@root/constance'
 import classNames from 'classnames'
 import Link from 'next/link'
-import Icon from '@components/Icon'
 import './list.less'
-
-import {
-  formatDate
-} from '@utils/utils'
 
 export interface BlogListCategorieOrTag {
   id: string;
@@ -39,30 +34,8 @@ const BlogList: React.FC<BlogListProps> = ({ list }) => {
   return (
     <li className={classString}>
       <Link href={`/blog/detail?id=${list.id}`}>
-        <a>
+        <a title={list.name}>
           <h2 className={`${classString}-title`}>{list.name}</h2>
-          <div className={`${classString}-conf`}>
-          <div className={`${classString}-date`}>
-            <Icon svgId="creat" color="#999"> {formatDate('yyyy-MM-dd', new Date(list.createDate.split(' ')[0]))} </Icon>
-          </div>
-          <div className={`${classString}-read`} title={`浏览量${list.readCount}`}>
-            <Icon svgId="read" color="#999"> {list.readCount} </Icon>
-          </div>
-          <div className={`${classString}-tag`} title="分类">
-            <Icon svgId="tag" color="#999">
-              {
-                list.tagLists && list.tagLists.map ((item, index) => (
-                  <div className="cat-list" key={index}>
-                    {
-                      index > 0 ? (<span> , </span>) : null
-                    }
-                    {item.name}
-                  </div>
-                ))
-              }
-            </Icon>
-          </div>
-        </div>
         </a>
       </Link>
     </li>

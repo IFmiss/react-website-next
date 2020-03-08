@@ -42,10 +42,7 @@ const Blog: NextPage<BlogProps, {}> = ({ blogInfo: { lists } }) => {
     <Layout title='this is Blog'>
       {
         lists && lists.length && lists.map(item => (
-          <div key={item.id}
-               className={classString}>
-            <BlogList list={item}/>
-          </div>
+          <BlogList list={item} key={item.id}/>
         ))
       }
     </Layout>

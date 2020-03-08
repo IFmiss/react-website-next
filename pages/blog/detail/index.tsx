@@ -49,6 +49,7 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = ({ detail, prev, next }) => {
     (
       detail && detail.id ? (
         <Layout title={detail.name}>
+          <h1 className={`${classString}-title`}>{detail.name}</h1>
           <ReactMarkdown className={classString}
                       source={detail.content}
                       escapeHtml={false}
