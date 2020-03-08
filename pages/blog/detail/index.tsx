@@ -10,7 +10,7 @@ import classNames from 'classnames'
 import {
   PROJECT_NAME
 } from '@constance/index'
-import http from '@utils/http'
+import http from '@utils/req'
 import ReactMarkdown from 'react-markdown'
 import './detail.less'
 import CodeBlock from "@components/CodeBlock";
@@ -46,24 +46,33 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = ({ detail, prev, next }) => {
     [`${PROJECT_NAME}-blog-detail`]: true
   })
   return (
-    <Layout title={detail.name}>
-       <ReactMarkdown className={classString}
-                   source={detail.content}
-                   escapeHtml={false}
-                   renderers={{
-                    code: CodeBlock
-                   }}/>
-    </Layout>
+    (
+      detail && detail.id ? (
+        <Layout title={detail.name}>
+          <ReactMarkdown className={classString}
+                      source={detail.content}
+                      escapeHtml={false}
+                      renderers={{
+                        code: CodeBlock
+                      }}/>
+        </Layout>
+      ) : (
+        <div>加载中...</div>
+      )
+    )
   )
 }
 
 BlogDetail.getInitialProps = async (ctx) => {
+  console.log('---')
   const id = ctx.query.id
-  const res = await http.get(`${ARTICLE_DETAIL}/${id}`)
+  console.log('result.id', id)
+  const { result } = await http.get(`${ARTICLE_DETAIL}/${id}`)
+  console.log('result.id', result.detail.id)
   return {
-    detail: res.result.detail,
-    next: res.result.next,
-    prev: res.result.prev
+    detail: result.detail,
+    next: result.next,
+    prev: result.prev
   }
 }
 export default BlogDetail

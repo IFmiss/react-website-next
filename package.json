@@ -12,6 +12,7 @@
     "@types/koa-router": "^7.4.0",
     "@types/next": "^9.0.0",
     "@types/react-syntax-highlighter": "^11.0.4",
+    "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "highlight.js": "^9.18.1",
     "http-proxy-middleware": "^1.0.1",

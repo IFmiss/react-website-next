@@ -11,7 +11,7 @@ import {
   PROJECT_NAME
 } from '@constance/index'
 
-import http from '@utils/http'
+import http from '@utils/req'
 
 import {
   ARTICLE_LISTS
@@ -55,9 +55,9 @@ const Blog: NextPage<BlogProps, {}> = ({ blogInfo: { lists } }) => {
 
 Blog.getInitialProps = async (ctx) => {
   const params = new URLSearchParams({ page: '0', size: '666', type: '全部' })
-  const res = await http.get(`${ARTICLE_LISTS}?${params}`, {})
+  const { result } = await http.get(`${ARTICLE_LISTS}?${params}`)
   return {
-    blogInfo: res.result
+    blogInfo: result
   }
 }
 
