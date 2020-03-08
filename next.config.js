@@ -18,6 +18,7 @@ module.exports = withPlugins(
     withLess
   ], {
     assetPrefix: isPord ? '/web_next/' : '',
+    distDir: '_next',
     lessLoaderOptions: {
       javascriptEnabled: true,
       modifyVars: themeVariables
