@@ -3,7 +3,7 @@ const fs = require('fs')
 const withLess = require('@zeit/next-less')
 const lessToJS = require('less-vars-to-js')
 const withPlugins = require("next-compose-plugins");
-
+const isPord = process.env.NODE_ENV === 'production' 
 const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, './style/val.less'), 'utf8')
 )
@@ -17,6 +17,7 @@ module.exports = withPlugins(
   [
     withLess
   ], {
+    assetPrefix: isPord ? '/web_next/' : '',
     lessLoaderOptions: {
       javascriptEnabled: true,
       modifyVars: themeVariables
