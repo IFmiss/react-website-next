@@ -64,15 +64,12 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = ({ detail, prev, next }) => {
 }
 
 BlogDetail.getInitialProps = async (ctx) => {
-  console.log('---')
-  const id = ctx.query.id
-  console.log('result.id', id)
-  const { result } = await http.get(`${ARTICLE_DETAIL}/${id}`)
-  console.log('result.id', result.detail.id)
+  const { id }  = ctx.query
+  const { data } = await http.get(`${ARTICLE_DETAIL}/${id}`)
   return {
-    detail: result.detail,
-    next: result.next,
-    prev: result.prev
+    detail: data.result && data.result.detail || {},
+    next: data.result && data.result.next || null,
+    prev: data.result && data.result.prev || null
   }
 }
 export default BlogDetail

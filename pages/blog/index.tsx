@@ -11,13 +11,12 @@ import {
   PROJECT_NAME
 } from '@constance/index'
 
-import http from '@utils/req'
-
 import {
   ARTICLE_LISTS
 } from '@constance/api'
 
 import './blog.less'
+import http from '@utils/req'
 
 interface BlogListReqData {
   lists: Array<IBlogList>
@@ -54,10 +53,11 @@ const Blog: NextPage<BlogProps, {}> = ({ blogInfo: { lists } }) => {
 }
 
 Blog.getInitialProps = async (ctx) => {
-  const params = new URLSearchParams({ page: '0', size: '666', type: '全部' })
-  const { result } = await http.get(`${ARTICLE_LISTS}?${params}`)
+  const res = await http.get(`${ARTICLE_LISTS}`, {
+    params: { page: '0', size: '666', type: '全部' }
+  })
   return {
-    blogInfo: result
+    blogInfo: res.data && res.data.result || {}
   }
 }
 
