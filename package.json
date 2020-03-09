@@ -7,7 +7,7 @@
     "build": "next build",
     "build_prod": "NODE_ENV=production next build",
     "server": "node server.js",
-    "start": "NODE_ENV=production node server.js",
+    "start": "npm run build_prod && NODE_ENV=production node server.js",
     "export": "next export"
   },
   "dependencies": {

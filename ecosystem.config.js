@@ -2,7 +2,8 @@ module.exports = {
   apps: [
     {
       name: 'web-next',
-      script: 'server.js',
+      script: 'npm',
+      args: 'start',
       instances: 'max',
       exec_mode: 'cluster',
       max_memory_restart: '200M',
