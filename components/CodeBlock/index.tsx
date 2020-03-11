@@ -1,7 +1,8 @@
 import React from 'react'
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+
+import '@style/high-custom.less'
 import './code-block.less'
-import { dark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 interface CodeBlockProps {
   language: string
@@ -13,8 +14,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ language, value }) => {
     <figure className="highlight-block">
       <SyntaxHighlighter language={language}
                          showLineNumbers={true}
-                         useInlineStyles={true}
-                         style={dark}>
+                         useInlineStyles={false}>
         {value}
       </SyntaxHighlighter>
     </figure>

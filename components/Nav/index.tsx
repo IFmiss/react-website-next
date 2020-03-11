@@ -16,7 +16,7 @@ const Nav = () => {
     <nav className={ classString }>
       <div className="nav-content">
         <div className="nav-logo">
-          <Link href="/">
+          <Link href="/blog">
             <h2 className="nav-title">{WEBSITE_TITLE}</h2>
           </Link>
         </div>

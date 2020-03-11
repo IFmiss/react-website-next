@@ -14,16 +14,9 @@ function createWindow () {
 
 app.allowRendererProcessReuse = true
 
-const dockMenu = Menu.buildFromTemplate([
-  {
-    label: 'New Window',
-    click () { console.log('New Window') }
-  }
-])
-
-app.dock.setMenu(dockMenu)
-
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createWindow()
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
