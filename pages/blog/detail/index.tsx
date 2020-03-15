@@ -59,18 +59,26 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = ({ detail, prev, next }) => {
                           code: CodeBlock
                         }}/>
             <div className={`${classString}-entry`}>
-              <Link href={`/blog/detail?id=${prev.id}`}>
-                <a className={`${classString}-entry-prev`}
-                    title={prev.name || ''}>
-                  { prev.name ? `上一篇 : ${prev.name}` : '' }
-                </a>
-              </Link>
-              <Link href={`/blog/detail?id=${next.id}`}>
-                <a className={`${classString}-entry-next`}
-                    title={next.name || ''}>
-                  { next.name ? `下一篇 : ${next.name}` : '' }
-                </a>
-              </Link >
+              {
+                prev && prev.id ? (
+                  <Link href={`/blog/detail?id=${prev.id}`}>
+                    <a className={`${classString}-entry-prev`}
+                        title={prev.name || ''}>
+                      { prev.name ? `上一篇 : ${prev.name}` : '' }
+                    </a>
+                  </Link>
+                ) : null
+              }
+              {
+                next && next.id ? (
+                  <Link href={`/blog/detail?id=${next.id}`}>
+                    <a className={`${classString}-entry-next`}
+                        title={next.name || ''}>
+                      { next.name ? `下一篇 : ${next.name}` : '' }
+                    </a>
+                  </Link >
+                ) : null
+              }
             </div>
           </div>
         </Layout>
