@@ -2,6 +2,7 @@ import Head from 'next/head'
 import React from 'react'
 import classNames from 'classnames'
 import { NextPage } from 'next'
+import { TITLE, DESC, KEYWORDS } from '@root/constance'
 
 interface LayoutProps {
   children: any;
@@ -31,7 +32,9 @@ const Layout: NextPage<LayoutProps> = (props) => {
 }
 
 Layout.defaultProps = {
-  title: '这是一个默认的title'
+  title: TITLE,
+  desc: DESC,
+  keywords: KEYWORDS
 }
 
 export default Layout

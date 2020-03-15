@@ -2,7 +2,9 @@
   "name": "react-website-next",
   "version": "0.1.0",
   "private": true,
-  "main": "main.js",
+  "author": "ifmiss",
+  "description": "ssr website",
+  "main": "./dist/main/main.js",
   "scripts": {
     "dev": "next dev -p 3006",
     "build": "next build",
@@ -10,7 +12,11 @@
     "server": "node server.js",
     "start": "npm run build_prod && NODE_ENV=production node server.js",
     "export": "next export",
-    "elc": "electron main.js"
+    "elc": "electron src/main/index.js",
+    "dev_elc": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "dependencies": {
     "@types/koa-router": "^7.4.0",
@@ -45,9 +51,40 @@
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "electron": "^8.1.1",
+    "electron-builder": "^22.4.1",
     "svg-sprite-loader": "^4.2.1",
     "terser-webpack-plugin": "^2.3.5",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.2"
+  },
+  "build": {
+    "productName": "dwblog",
+    "appId": "com.electron.${name}",
+    "copyright": "Copyright © year ${author}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "icon": "https://www.daiwei.site/web_v3/favicon.ico",
+      "category": "public.app-category.news"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
   }
 }

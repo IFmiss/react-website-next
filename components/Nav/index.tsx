@@ -5,6 +5,7 @@ import {
   PROJECT_NAME,
   WEBSITE_TITLE
 } from '@constance/index' 
+import Ripple from '@components/Ripple'
 import Link from 'next/link'
 
 const Nav = () => {
@@ -17,7 +18,11 @@ const Nav = () => {
       <div className="nav-content">
         <div className="nav-logo">
           <Link href="/blog">
-            <h2 className="nav-title">{WEBSITE_TITLE}</h2>
+            <a>
+              <Ripple>
+                <h2 className="nav-title">{WEBSITE_TITLE}</h2>
+              </Ripple>
+            </a>
           </Link>
         </div>
       </div>
