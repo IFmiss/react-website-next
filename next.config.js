@@ -59,6 +59,7 @@ module.exports = withPlugins(
         '@utils': path.join(__dirname, 'utils'),
         '@module': path.join(__dirname, 'module'),
         '@assets': path.join(__dirname, 'assets'),
+        '@store': path.join(__dirname, 'store'),
       }
       return config
     },

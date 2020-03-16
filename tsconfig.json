@@ -41,6 +41,9 @@
       ],
       "@assets/*": [
         "./assets/*"
+      ],
+      "@store/*": [
+        "./store/*"
       ]
     },
     "forceConsistentCasingInFileNames": true,

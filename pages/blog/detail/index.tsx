@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   NextPage
 } from 'next'
@@ -46,6 +46,12 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = ({ detail, prev, next }) => {
   const classString = classNames({
     [`${PROJECT_NAME}-blog-detail`]: true
   })
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 0)
+  }, [])
 
   return (
     (

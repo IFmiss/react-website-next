@@ -15,8 +15,15 @@ import {
   ARTICLE_LISTS
 } from '@constance/api'
 
+import { 
+  IStore
+} from '@store/types';
+
+import Action from '@store/actions/baseAction'
+
 import './blog.less'
 import http from '@utils/req'
+import { connect } from 'react-redux'
 
 interface BlogListReqData {
   lists: Array<IBlogList>
@@ -28,23 +35,28 @@ interface BlogListReqData {
 
 interface BlogProps {
   blogInfo: BlogListReqData
+  ele: any
 }
 
-const Blog: NextPage<BlogProps, {}> = ({ blogInfo: { lists } }) => {
+const Blog: NextPage<BlogProps, {}> = (props) => {
+  const { blogInfo: { lists } } = props
   const classString = classNames({
     [`${PROJECT_NAME}-blog`]: true
   })
 
   useEffect(() => {
+    console.log(props.ele)
   }, [])
 
   return (
     <Layout>
-      {
-        lists && lists.length && lists.map(item => (
-          <BlogList list={item} key={item.id}/>
-        ))
-      }
+      <div className={classString}>
+        {
+          lists && lists.length && lists.map(item => (
+            <BlogList list={item} key={item.id}/>
+          ))
+        }
+      </div>
     </Layout>
   )
 }
@@ -58,4 +70,8 @@ Blog.getInitialProps = async (ctx) => {
   }
 }
 
-export default Blog
+const mapState = (state: IStore) => ({ ...state.BaseStore })
+
+const mapDispatch = (state: IStore) => ({ ...state.BaseStore })
+
+export default connect(mapState)(Blog)
