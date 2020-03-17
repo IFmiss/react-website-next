@@ -19,7 +19,7 @@ import {
   IStore
 } from '@store/types';
 
-import Action from '@store/actions/baseAction'
+import Action from '@root/store/actions/index'
 
 import './blog.less'
 import http from '@utils/req'
@@ -35,7 +35,8 @@ interface BlogListReqData {
 
 interface BlogProps {
   blogInfo: BlogListReqData
-  ele: any
+  containerEle: any,
+  setContainerEle: (ele: any) => void
 }
 
 const Blog: NextPage<BlogProps, {}> = (props) => {
@@ -45,7 +46,7 @@ const Blog: NextPage<BlogProps, {}> = (props) => {
   })
 
   useEffect(() => {
-    console.log(props.ele)
+    props.setContainerEle('a')
   }, [])
 
   return (
@@ -70,8 +71,15 @@ Blog.getInitialProps = async (ctx) => {
   }
 }
 
-const mapState = (state: IStore) => ({ ...state.BaseStore })
+const mapState = (state: IStore) => ({ 
+  containerEle: state.base.containerEle
+ })
 
-const mapDispatch = (state: IStore) => ({ ...state.BaseStore })
+const mapDispatch = Action
 
-export default connect(mapState)(Blog)
+Blog.defaultProps = {
+  setContainerEle: () => {},
+  containerEle: null
+}
+
+export default connect(mapState, mapDispatch)(Blog)

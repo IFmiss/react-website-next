@@ -3,8 +3,8 @@ import {
   Dispatch
 } from 'redux'
 
-import BaseAction from './baseAction'
+import base from './base'
 
 export default (dispatch: Dispatch) => bindActionCreators({
-  ...BaseAction
+  ...base
 }, dispatch)

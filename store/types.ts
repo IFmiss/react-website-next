@@ -6,5 +6,5 @@ export interface IActionProps<T> {
 }
 
 export interface IStore {
-  BaseStore: BaseStore
+  base: BaseStore
 }

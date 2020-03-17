@@ -16,6 +16,12 @@ import './detail.less'
 import CodeBlock from "@components/CodeBlock";
 import Link from 'next/link'
 
+import { 
+  IStore
+} from '@store/types';
+import MainAction from '@root/store/actions/index'
+import { connect } from 'react-redux'
+
 interface IBlogListCategorieOrTag {
   id: string;
   name: string;
@@ -42,7 +48,8 @@ interface BlogDetailProps {
   prev: IBlogPrevNext
 }
 
-const BlogDetail: NextPage<BlogDetailProps, {}> = ({ detail, prev, next }) => {
+const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
+  const { detail, prev, next } = props
   const classString = classNames({
     [`${PROJECT_NAME}-blog-detail`]: true
   })
@@ -50,6 +57,7 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = ({ detail, prev, next }) => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0)
+      console.log('detail', props)
     }, 0)
   }, [])
 
@@ -104,4 +112,11 @@ BlogDetail.getInitialProps = async (ctx) => {
     prev: data.result && data.result.prev || null
   }
 }
-export default BlogDetail
+
+const mapState = (state: IStore) => ({ 
+  containerEle: state.base.containerEle
+ })
+
+const mapDispatch = MainAction
+
+export default connect(mapState, mapDispatch)(BlogDetail)

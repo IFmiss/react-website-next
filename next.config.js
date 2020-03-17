@@ -60,6 +60,7 @@ module.exports = withPlugins(
         '@module': path.join(__dirname, 'module'),
         '@assets': path.join(__dirname, 'assets'),
         '@store': path.join(__dirname, 'store'),
+        react: path.resolve('./node_modules/react')
       }
       return config
     },

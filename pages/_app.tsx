@@ -14,10 +14,6 @@ class MyApp extends App {
     [`theme-default`]: true
   })
 
-  componentDidMount () {
-    console.log(this.props)
-  }
-
   render() {
     const { Component, pageProps } = this.props
 

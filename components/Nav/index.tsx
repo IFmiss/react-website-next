@@ -5,9 +5,9 @@ import {
   PROJECT_NAME,
   WEBSITE_TITLE
 } from '@constance/index' 
-import Ripple from '@components/Ripple'
+import loadable from '@loadable/component'
 import Link from 'next/link'
-
+const Ripple = loadable(() => import('ripple-button'))
 const Nav = () => {
   const classString = classNames({
     [`${PROJECT_NAME}-nav`]: true

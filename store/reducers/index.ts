@@ -2,8 +2,8 @@ import {
   combineReducers
 } from 'redux'
 
-import BaseReducer from './baseReducer'
+import base from './base'
 
 export default combineReducers({
-  BaseReducer
+  base
 })
