@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classNames from 'classnames'
 import './nav.less'
 import {
@@ -8,6 +8,7 @@ import {
 import loadable from '@loadable/component'
 import Link from 'next/link'
 const Ripple = loadable(() => import('ripple-button'))
+
 const Nav = () => {
   const classString = classNames({
     [`${PROJECT_NAME}-nav`]: true

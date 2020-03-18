@@ -7422,10 +7422,10 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-ripple-button@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/ripple-button/-/ripple-button-1.0.4.tgz#f675355a0620f130bc55019d36fabb0976467853"
-  integrity sha512-1WZtsJz7b95urFUKVGc7hHm3iOyTQIkxa7/6b3tw4zsU+WUyeoYisu7fDDjsDJAgnMtmeZAXUYhFxHD7jWz1qg==
+ripple-button@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/ripple-button/-/ripple-button-1.0.8.tgz#134c68773b105a5ecd6b63e22c29721cbba50d68"
+  integrity sha512-n6ITwHsae6/XtR24NTycLkB073EvoXn46b7zEp0damjoV702rljhLKIpuEO9gnEfGSgNcOc4KHnJ7coMQD3NJw==
 
 roarr@^2.15.2:
   version "2.15.2"
