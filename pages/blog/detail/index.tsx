@@ -55,11 +55,15 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
   })
 
   useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, 0)
-      console.log('detail', props)
-    }, 0)
+    eleToTop()
   }, [])
+  
+  const eleToTop = () => {
+    const ele = document.getElementById('dw-next-container')
+    if (ele) {
+      ele.scrollTop = 0
+    }
+  }
 
   return (
     (
