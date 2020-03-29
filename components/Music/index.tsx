@@ -7,12 +7,11 @@ import loadable from '@loadable/component'
 import {
   artists, MusicGroupList
 } from './types'
-// import dynamic from 'next/dynamic';
-// const audioInstance = dynamic(() => import('@components/Audio/main'), {
-//   ssr: false
-// })
-import Dauido from '@components/Audio'
+import { IDAudio } from '../Audio'
+// const audioInstance = require('@components/Audio/main').default
+import audioInstance from '@components/Audio/main'
 
+let audiRef: IDAudio
 const Ripple = loadable(() => import('ripple-button'))
 
 const Music = () => {
@@ -22,16 +21,14 @@ const Music = () => {
   useEffect(() => {
     getMusic(2179377798)
 
-    // const audioInstance = require('@components/Audio/main').default
-    // console.log('audioInstance', audioInstance)
-    // audioRef.current = audioInstance({
-    //   style: 'rect',
-    //   type: 'handle'
-    // })
-    // console.log('Dauido', Dauido)
-    // const a = Dauido({})
-    // console.log('audioInstance', audioInstance)
-    // const a = audioInstance({})
+    audiRef = audioInstance({
+      handle: {
+        onNext: () => {
+          console.log('next')
+        }
+      }
+    })
+    console.log('audiRef', audiRef)
   }, [])
 
   const getMusic = async (id: number) => {
@@ -51,9 +48,8 @@ const Music = () => {
       name: item.name,
       disc: formatMusicArtists(formatDetail[0].artists)
     }
-    // audioRef.current.cut(st)
-    // const a = Dauido({})
-    // a.cut(st)
+    console.log('audiRefaudiRefaudiRef', audiRef)
+    audiRef && audiRef.cut(st)
   }
 
   const clipImage = (src: string, w: number = 120, h?: number): string => {

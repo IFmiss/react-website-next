@@ -91,6 +91,10 @@ export interface IDAudioRef {
   addEvent: AddEventFn
 }
 
+export interface IDAudio extends IDAudioRef {
+  destroy: () => void;
+}
+
 const DEFAULT_PLAY_INFO = {
   name: 'sunmmer',
   disc: 'hollo sunmmer',
@@ -103,6 +107,7 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
   type = 'handle',
   playType = 'sequential-play',
   playList = [DEFAULT_PLAY_INFO],
+  handle
 }, ref) => {
   const [playing, setPlaying] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -141,11 +146,20 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
 
   useEffect(() => {
     (audioRef.current  as any).addEventListener('timeupdate', onAudioTimeUpdate);
+    handle && initHandle(handle)
 
     return () => {
       (audioRef.current as any).removeEventListener('timeupdate', onAudioTimeUpdate)
     }
   }, [])
+
+  const initHandle = (handle: DaudioEventType) => {
+    // 注册事件
+    const handleKeys = handle && Object.keys(handle)
+    handleKeys && (handleKeys as Array<EventType>).forEach((item) => {
+      addEvent(item, handle && handle[item] || function(){})
+    })
+  }
 
   const setStyle = (t: DaudioStyle) => {
     setAudioStyle(t)
@@ -386,14 +400,16 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
 // export default Daudio
 const AudioComponent = React.forwardRef(Daudio)
 
-function AudioInstance(props: Exclude<IDaudioProps, 'playInfo'>) {
+function AudioInstance(props: Exclude<IDaudioProps, 'playInfo'>): IDAudio {
   const AudioRef = React.createRef<IDAudioRef>()
 
   const div = document.createElement('div')
   document.body.appendChild(div)
 
-  ReactDOM.render(<AudioComponent {...props} ref={AudioRef}></AudioComponent>, div)
-
+  const a = ReactDOM.createPortal(<AudioComponent {...props} ref={AudioRef}></AudioComponent>, div)
+  console.log('a', a)
+  console.log('AudioRef.current', AudioRef.current)
+  
   const destroy = () => {
     const unmountResult = ReactDOM.unmountComponentAtNode(div)
     unmountResult && div.parentNode?.removeChild(div)
@@ -405,4 +421,4 @@ function AudioInstance(props: Exclude<IDaudioProps, 'playInfo'>) {
   }
 }
 
-export default AudioInstance({})
+export default AudioInstance

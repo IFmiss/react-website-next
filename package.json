@@ -11,6 +11,7 @@
     "build_prod": "NODE_ENV=production next build",
     "server": "node server.js",
     "start": "npm run build_prod && NODE_ENV=production node server.js",
+    "start_prod": "NODE_ENV=production node server.js",
     "export": "next export",
     "elc": "electron src/main/index.js",
     "dev_elc": "electron-webpack dev",

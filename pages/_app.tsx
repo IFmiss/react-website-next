@@ -7,8 +7,8 @@ import CopyRight from '@root/components/CopyRight'
 
 import { Provider } from 'react-redux'
 import store from '@store/index'
-// import SiderWarp from '@root/components/SiderWarp'
 import { addClass, removeClass } from '@root/utils/utils'
+// import SiderWarp from '@root/components/SiderWarp'
 // import Music from '@components/Music'
 
 class MyApp extends App {
