@@ -36,17 +36,10 @@ module.exports = withPlugins(
         ],
       });
 
-      // config.module.rules.push({
-      //   test: /\.svg$/,
-      //   use: {
-      //     loader: 'svg-sprite-loader',
-      //     options: {
-      //       symbolId: '[name]'
-      //       // symbolId: filePath => path.basename(filePath)
-      //     }
-      //   },
-      //   include: path.resolve(__dirname, 'assets/svg')
-      // });
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: '@svgr/webpack'
+      });
 
       config.devtool = 'cheap-module-inline-source-map';
       config.resolve.alias = {

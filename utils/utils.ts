@@ -48,7 +48,7 @@ export function hasClass (el: HTMLElement | Element, className: string): boolean
  * @example
  * hasClass(document.body, 'd-utils')
  */
-export function addClass (el: HTMLElement | Element, className: string | string[]): void {
+export function addClass (el: Element | HTMLElement, className: string | string[]): void {
   if (Array.isArray(className)) {
     className.forEach((item: string) => {
       if (!hasClass(el, item)) {
@@ -69,7 +69,7 @@ export function addClass (el: HTMLElement | Element, className: string | string[
  * @example
  * removeClass(document.body, 'd-utils')
  */
-export function removeClass (el: HTMLElement | Element, className: string | string[]): void {
+export function removeClass (el: Element | HTMLElement, className: string | string[]): void {
   if (Array.isArray(className)) {
     className.forEach((item: string) => {
       if (hasClass(el, item)) {

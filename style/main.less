@@ -37,7 +37,7 @@
     --bg-nav-active: #1a1a1d;
     --mask-bg: rgba(0,0,0,0.3);
     --o-bg: rgba(0, 0, 0, 0.4);
-    --bg: #201e1e;
+    --bg: #18191a;
     --h-color: #eee;
   }
 }
@@ -69,7 +69,14 @@ body {
   height: 100vh;
   overflow: auto;
   background: var(--bg);
-  transition: padding 0.3s, background-color 0.3s;
+  perspective: none;
+  &.perspective {
+    perspective: 12000px;
+    transition: all 0.3s;
+    .react-next-content {
+      transform: translateX(-10px);
+    }
+  }
 }
 
 #dw-react-web-container {
@@ -80,7 +87,9 @@ body {
   width: 100%;
   max-width: @container-width;
   margin: 0 auto;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
+  padding-bottom: 60px;
+  transform-origin: -15px -15px;
   a {
     cursor: pointer;
   }
