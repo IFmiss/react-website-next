@@ -43,9 +43,23 @@
       width: 390px;
   }
   blockquote {
-      border-left:.5em solid #eee;
-      padding: 0 0 0 2em;
-      margin-left:0;
+    // border-left: .5em solid var(--primary-color);
+    padding: 0 0 0 1.5em;
+    margin-left:0;
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0.3em;
+        border-radius: 6px;
+        bottom: 0;
+        background: var(--primary-color);
+    }
+    p {
+        font-size: 14px;
+    }
   }
   blockquote  cite {
       font-size:14px;

@@ -8,6 +8,7 @@
     fill: var(--text-color);
     width: 16px;
     height: 16px;
+    z-index: 111;
   }
   &.fixed {
     .mask {
@@ -24,19 +25,19 @@
     transition: all 0.3s;
     opacity: 0;
     visibility: hidden;
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
   }
   .content {
     position: fixed;
     width: @side-warp-width;
     right: 0;
     transform: translate3d(100%, 0, 0);
-    background: var(--bg);
     border: -10px 10px 10px 0 var(--border-color);
     top: 0;
     bottom: 0;
     transition: transform 0.3s;
     z-index: @sider-warp-z-index + 1;
-    padding: 15px;
     box-sizing: border-box;
     .wrapper {
       height: 100%;
