@@ -44,6 +44,9 @@
       ],
       "@store/*": [
         "./store/*"
+      ],
+      "@use/*": [
+        "./use/*"
       ]
     },
     "forceConsistentCasingInFileNames": true,

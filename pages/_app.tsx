@@ -8,14 +8,19 @@ import CopyRight from '@root/components/CopyRight'
 import { Provider } from 'react-redux'
 import store from '@store/index'
 import { addClass, removeClass } from '@root/utils/utils'
-import SiderWarp from '@root/components/SiderWarp'
-import Music from '@components/Music'
+// import SiderWarp from '@root/components/SiderWarp'
+// import Music from '@components/Music'
+import useGrayPage from '@root/use/useGrayPage'
 
 class MyApp extends App {
   public classWrapperString = classNames({
     [`react-next-wrapper`]: true,
     [`theme-default`]: true
   })
+
+  componentDidMount() {
+    useGrayPage()
+  }
 
   public showFn = () => {
     addClass(document.getElementById('dw-next-container') as HTMLElement, 'perspective')
@@ -29,11 +34,11 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
     return (
       <Provider store={store}>
-        <SiderWarp showFn={this.showFn}
+        {/* <SiderWarp showFn={this.showFn}
                   hideFn={this.hideFn}
                   type='fixed'>
           <Music></Music>
-        </SiderWarp>
+        </SiderWarp> */}
         <div className={`${this.classWrapperString}`} id='dw-next-container'>
           <div className='react-next-content'>
             <header>

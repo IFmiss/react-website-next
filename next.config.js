@@ -53,6 +53,7 @@ module.exports = withPlugins(
         '@module': path.join(__dirname, 'module'),
         '@assets': path.join(__dirname, 'assets'),
         '@store': path.join(__dirname, 'store'),
+        '@use': path.join(__dirname, 'use'),
         react: path.resolve('./node_modules/react')
       }
       return config
