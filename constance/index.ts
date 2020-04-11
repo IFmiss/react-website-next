@@ -69,11 +69,11 @@ export const MUSIC_RANK_TYPE: any = {
 }
 
 // copyright 配置
-export const COPY_RIGHT_CONFIG = [
-  {
-    name: 'd-utils',
-    to: 'https://d-utils.daiwei.site'
-  }
+export const COPY_RIGHT_CONFIG: Array<{name: string; to: string}> = [
+  // {
+  //   name: 'd-utils',
+  //   to: 'https://d-utils.daiwei.site'
+  // }
   // , {
   //   name: '友情链接',
   //   to: '/interlink'

@@ -40,6 +40,7 @@ export interface IDaudioProps {
   playType?: DaudioPlayType;
   playList?: Array<IDaudioPalyInfo>;
   handle?: DaudioEventType;
+  onNext?: () => void;
 }
 
 export interface IDAudioRef {
@@ -88,7 +89,7 @@ export interface IDAudioRef {
   /**
    * 设置事件监听
    */
-  addEvent: AddEventFn
+  addEvent: AddEventFn;
 }
 
 export interface IDAudio extends IDAudioRef {
@@ -107,7 +108,8 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
   type = 'handle',
   playType = 'sequential-play',
   playList = [DEFAULT_PLAY_INFO],
-  handle
+  handle,
+  onNext
 }, ref) => {
   const [playing, setPlaying] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -186,10 +188,11 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
     e.preventDefault()
     // setHandleList(audioInfo)
     if (isHandle) {
-      console.log('by-handle')
       // next事件
       const eventHandler = eventQueue.current
-      eventHandler?.onNext?.map(item => item.call(null))
+      onNext && onNext()
+      // console.log(eventHandler?.onNext)
+      // eventHandler?.onNext?.map(item => item.call(null))
       return
     }
     checkNextByList()
@@ -406,7 +409,8 @@ function AudioInstance(props: Exclude<IDaudioProps, 'playInfo'>): IDAudio {
   const div = document.createElement('div')
   document.body.appendChild(div)
 
-  const a = ReactDOM.createPortal(<AudioComponent {...props} ref={AudioRef}></AudioComponent>, div)
+  const a = ReactDOM.render(<AudioComponent {...props} ref={AudioRef}></AudioComponent>, div)
+  console.log('div', div)
   console.log('a', a)
   console.log('AudioRef.current', AudioRef.current)
   

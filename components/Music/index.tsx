@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import cls from 'classnames'
 import http from '@utils/req'
 import { MUSIC_DETAIL, MUSIC_PLAY_DETAIL } from '@constance/api'
@@ -8,27 +8,21 @@ import {
   artists, MusicGroupList
 } from './types'
 import { IDAudio } from '../Audio'
-// const audioInstance = require('@components/Audio/main').default
-import audioInstance from '@components/Audio/main'
-
-let audiRef: IDAudio
+import audioFn from '@components/Audio/main'
 const Ripple = loadable(() => import('ripple-button'))
+const audioInstance = audioFn({
+  style: 'rect'
+})
 
 const Music = () => {
   const [tracksLists, setTracksLists] = useState<any>([])
+  const [playIndex, setPlayIndex] = useState<number>(0)
   const classString = cls('music-sider-wrapper')
 
   useEffect(() => {
     getMusic(2179377798)
-
-    audiRef = audioInstance({
-      handle: {
-        onNext: () => {
-          console.log('next')
-        }
-      }
-    })
-    console.log('audiRef', audiRef)
+    // audioInstance.addEvent('onEnded', checkNext)
+    // audioInstance.addEvent('onNext', () => checkNext())
   }, [])
 
   const getMusic = async (id: number) => {
@@ -37,9 +31,21 @@ const Music = () => {
     setTracksLists(tracks)
   }
 
-  const checkMusic = async (item: MusicGroupList) => {
+  const checkNext = () => {
+    console.log('playIndex', playIndex)
+    setPlayIndex(playIndex + 1)
+  }
+
+  useEffect(() => {
+    console.log('index changed', playIndex)
+    if (tracksLists && tracksLists.length) {
+      playAudioByIndex()
+    }
+  }, [playIndex])
+
+  const playAudioByIndex = async () => {
+    const item = tracksLists[playIndex]
     const { data: { songs : musicDetail } } = await getMusicDetailById(item.id)
-    console.log('songs', musicDetail)
     const formatDetail: any = formatMusicLists(musicDetail)
     console.log('formatDetail', formatDetail)
     const st = {
@@ -48,8 +54,12 @@ const Music = () => {
       name: item.name,
       disc: formatMusicArtists(formatDetail[0].artists)
     }
-    console.log('audiRefaudiRefaudiRef', audiRef)
-    audiRef && audiRef.cut(st)
+    audioInstance && audioInstance.cut(st)
+  }
+
+  const checkMusic = async (index: number) => {
+    // item: MusicGroupList
+    setPlayIndex(index)
   }
 
   const clipImage = (src: string, w: number = 120, h?: number): string => {
@@ -87,7 +97,7 @@ const Music = () => {
           tracksLists && tracksLists.map((item: MusicGroupList, index: number) => (
             <Ripple key={index}
                     color='rgba(99, 99, 99, 0.3)'
-                    onClick={checkMusic.bind(null, item)}>
+                    onClick={checkMusic.bind(null, index)}>
               <li>{item.name}</li>
             </Ripple>
           ))

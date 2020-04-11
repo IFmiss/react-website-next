@@ -1,12 +1,17 @@
-import React, { useRef, useState, useEffect, useImperativeHandle } from 'react'
+import React, { useRef, useState, useEffect, useImperativeHandle, ReactElement, useMemo } from 'react'
 import classNames from 'classnames'
 import { PROJECT_NAME } from '@constance/index'
 import './sider-warp.less'
 import Menu from './menu.svg'
+import {
+  isAppleDevice
+} from '@utils/utils'
+import { addClass, removeClass } from '@root/utils/utils'
 
 interface ISiderWarpProps {
   show: boolean;
-  type: SiderType;
+  type: SiderPosition;
+  name: string | ReactElement;
   hideFn?: () => void;
   showFn?: () => void;
 }
@@ -18,14 +23,36 @@ interface ISiderWrapRef {
 
 type SiderType = 'fixed' | 'auto'
 
+type SiderPosition = 'right' | 'left' | 'bottom'
+
 const SiderWarp: React.ForwardRefRenderFunction<ISiderWrapRef, ISiderWarpProps> = (props, ref) => {
-  const [show, setShow] = useState<boolean>(props.show)
+  const siderRef = useRef<HTMLElement>(null)
+  const { name = '菜单', type = 'right' } = props
+  const [show, setShow] = useState<boolean>(props.show || true)
 
   const classString = classNames({
     [`${PROJECT_NAME}-comp-sider-warp`]: true,
     [`show`]: show,
-    [`${props.type}`]: true
+    [`${type}`]: true
   })
+  
+  const classWrap = classNames({
+    [`${PROJECT_NAME}-comp-sider-warp`]: true
+  })
+
+  useEffect(() => {
+    if (show) {
+      addClass(document.getElementById('dw-next-container') as HTMLElement, `sider-warp-${type}`)
+    } else {
+      removeClass(document.getElementById('dw-next-container') as HTMLElement, `sider-warp-${type}`)
+    }
+  }, [show])
+
+  useEffect(() => {
+    if (isAppleDevice() && siderRef.current) {
+      addClass(siderRef.current, 'blur')
+    }
+  }, [])
 
   const hideComp = () => {
     setShow((show) => show = false)
@@ -42,8 +69,6 @@ const SiderWarp: React.ForwardRefRenderFunction<ISiderWrapRef, ISiderWarpProps> 
     setShow((show) => show = !show)
   }
 
-  const mapRef = useRef(null)
-
   useImperativeHandle(ref, () => {
     return {
       showComp,
@@ -52,14 +77,15 @@ const SiderWarp: React.ForwardRefRenderFunction<ISiderWrapRef, ISiderWarpProps> 
   })
 
   return (
-    <section className={classString} ref={mapRef}>
-      <div className='mask' onClick={hideComp}></div>
-      <div className='content'>
-        <div className="content-switch" onClick={toggleSiderWarp}>
-          <Menu className='memu'></Menu>
-        </div>
-        <div className='wrapper'>
-          {props.children}
+    <section className={classString} ref={siderRef}>
+      <div className={`${classWrap}-mask`} onClick={hideComp}></div>
+      <div className={`${classWrap}-content`}>
+        <div className={`${classWrap}-content-title`}>{
+          name
+        }</div>
+        <div className={`${classWrap}-content-wrapper`}>
+          {/* {props.children} */}
+          asdasdasd
         </div>
       </div>
     </section>

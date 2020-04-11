@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import {
   NextPage
 } from 'next'
@@ -15,12 +15,14 @@ import ReactMarkdown from 'react-markdown'
 import './detail.less'
 import CodeBlock from "@components/CodeBlock";
 import Link from 'next/link'
+import LazyLoad from 'react-lazyload'
 
 import { 
   IStore
 } from '@store/types';
 import MainAction from '@root/store/actions/index'
 import { connect } from 'react-redux'
+import ReactDOM from 'react-dom'
 
 interface IBlogListCategorieOrTag {
   id: string;
@@ -56,7 +58,48 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
 
   useEffect(() => {
     eleToTop()
+    renderImage()
   }, [])
+
+  const renderImage = async () => {
+    const Zmage = require('react-zmage').default
+    const imgs = Array.from(document.querySelectorAll('.react-next-web-blog-detail img'))
+    const lists = imgs.map(item => (
+      {
+        src: item.getAttribute('src') || '',
+        alt: "图片的占位文字，作为图片的标题, 请尽量保持简短",
+        className: 'testClassName'
+      }
+    ))
+    console.log(lists)
+    imgs.forEach((item, index) => {
+      const { src, alt } = lists[index]
+      const ele = document.createElement('p')
+      ele.className = 'image-wrapper'
+      const wrapperEle = item.parentNode && item.parentNode.insertBefore(ele, item)
+      item.parentNode?.removeChild(item)
+      ReactDOM.render(
+        <>
+          <LazyLoad
+            placeholder={
+              <img
+                className="title-header-logo"
+                src="https://www.daiwei.site/static/logo/dw.png"
+              />
+            }
+          >
+            <Zmage src={src}
+                alt={alt}
+                set={lists}
+                defaultPage={index}
+                >
+            </Zmage>
+          </LazyLoad>
+        </>,
+        wrapperEle as Element
+      )
+    })
+  }
   
   const eleToTop = () => {
     const ele = document.getElementById('dw-next-container')
@@ -71,11 +114,13 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
         <Layout title={detail.name}>
           <div className={classString}>
             <h1 className={`${classString}-title`}>{detail.name}</h1>
-            <ReactMarkdown source={detail.content}
-                        escapeHtml={false}
-                        renderers={{
-                          code: CodeBlock
-                        }}/>
+            <ReactMarkdown
+              source={detail.content}
+              escapeHtml={true}
+              skipHtml={true}
+              renderers={{
+                code: CodeBlock
+              }}/>
             <div className={`${classString}-entry`}>
               {
                 prev && prev.id ? (

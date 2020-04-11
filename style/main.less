@@ -3,61 +3,72 @@
   position: relative;
 }
 
+// 主色调
 @light_main: #158a4c;
 @dark_main: pink;
 
+// 阴影
+@light-shadow-color: #f0f0f0;
+@dark-shadow-color: #0e0e0f;
+
+// 边框色
+@light-border-color: rgba(33, 33, 33, 0.03);
+@dark-border-color: rgba(222, 222, 222, 0.03);
+
+// 深一点的边框色
+@light-border-color-deep: rgba(33, 33, 33, 0.2);
+@dark-border-color-deep: rgba(222, 222, 222, 0.2);
+
+// 文字颜色
+@light-text-color: #666;
+@dark-text-color: #999;
+
+// 文字高亮颜色
+@light-text-color-active: #333;
+@dark-text-color-active: #eee;
+
+// 背景色
+@light-bg: #fff;
+@dark-bg: #18191a;
+
+// 遮罩层背景色
+@light-mask-bg: rgba(244,244,244,0.3);
+@dark-mask-bg: rgba(0,0,0,0.3);
+
 :root {
-  --auto-color: #aaa;
-  --scroll-color: #f2f2f2;
-  --shadow-color: #f0f0f0;
-  --border-color: rgba(33, 33, 33, 0.03);
+  --shadow-color: @light-shadow-color;
+  --border-color: @light-border-color;
   --border-color-deep: rgba(33, 33, 33, 0.2);
   --primary-color: @light_main;
-  --text-color: #666;
-  --text-color-active: #333;
-  --bg-nav: #fff;
-  --bg-nav-active: #fafafa;
-  --mask-bg: rgba(244,244,244,0.3);
-  --bg: #fff;
-  --o-bg: rgba(255, 255, 255, 0.4);
-  --h-color: #333;
+  --text-color: @light-text-color;
+  --text-color-active: @light-text-color-active;
+  --mask-bg: @light-mask-bg;
+  --bg: @light-bg;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --auto-color: #999;
-    --scroll-color: #666;
     --shadow-color: #0e0e0f;
-    --border-color: rgba(222, 222, 222, 0.03);
-    --border-color-deep: rgba(222, 222, 222, 0.2);
+    --border-color: @dark-border-color;
+    --border-color-deep: @light-border-color-deep;
     --primary-color: @dark_main;
-    --text-color: #999;
-    --text-color-active: #eee;
-    --bg-nav: #1e1e22;
-    --bg-nav-active: #1a1a1d;
-    --mask-bg: rgba(0,0,0,0.3);
-    --o-bg: rgba(0, 0, 0, 0.4);
-    --bg: #18191a;
-    --h-color: #eee;
+    --text-color: @dark-text-color;
+    --text-color-active: @dark-text-color-active;
+    --mask-bg: @dark-mask-bg;
+    --bg: @dark-bg;
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --auto-color: #aaa;
-    --scroll-color: #f2f2f2;
-    --shadow-color: #f0f0f0;
-    --border-color: rgba(33, 33, 33, 0.03);
-    --border-color-deep: rgba(33, 33, 33, 0.2);
+    --shadow-color: @light-shadow-color;
+    --border-color: @light-border-color;
+    --border-color-deep: @light-border-color-deep;
     --primary-color: @light_main;
-    --text-color: #666;
-    --text-color-active: #333;
-    --bg-nav: #fff;
-    --bg-nav-active: #fafafa;
-    --mask-bg: rgba(244,244,244,0.3);
-    --bg: #fff;
-    --o-bg: rgba(255, 255, 255, 0.4);
-    --h-color: #333;
+    --text-color: @light-text-color;
+    --text-color-active: @light-text-color-active;
+    --mask-bg: @light-mask-bg;
+    --bg: @light-bg;
   }
 }
 
@@ -70,7 +81,6 @@ body {
 
 .react-next-wrapper {
   height: auto;
-  overflow: auto;
   background: var(--bg);
   perspective: none;
   &.perspective {
@@ -95,5 +105,23 @@ body {
   transform-origin: -15px -15px;
   a {
     cursor: pointer;
+  }
+}
+
+// 图片查看器
+#zmage {
+  #zmageBackground {
+    background: var(--bg)!important;
+  }
+  #zmageControlPagination {
+    #zmageControlPaginationActive {
+      background: var(--primary-color);
+    }
+  }
+  #zmageControl, #zmageControlFlipLeft, #zmageControlFlipRight, #zmageControlPagination {
+    background: var(--mask-bg)!important;
+    svg {
+      fill: var(--text-color);
+    }
   }
 }

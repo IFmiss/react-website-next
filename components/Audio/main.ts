@@ -4,4 +4,4 @@ const instanceWrapper = (props: IDaudioProps): IDAudio =>  {
   return AudioInstance(props)
 }
 
-export default AudioInstance
+export default instanceWrapper

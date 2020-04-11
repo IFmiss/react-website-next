@@ -166,3 +166,8 @@ export function cssFilter (el: HTMLElement, type: any, option: string | number):
   el.style.filter = `${type}(${option})`
   el.style.webkitFilter = `${type}(${option})`
 }
+
+export function isAppleDevice(): boolean {
+  const ua = navigator.userAgent.toLowerCase()
+  return /|iphone|ipod|ipad|ios|mac/.test(ua)
+}

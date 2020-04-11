@@ -13,10 +13,10 @@ const CopyRight = () => {
 
   return (
     <footer className={classString}>
-      <span className={`${classString}-info list`}>© 2016 - { formatDate('yyyy', new Date()) } from dw</span>
+      <span className={`${classString}-info list`}>dw | © 2016 - { formatDate('yyyy', new Date()) }</span>
       <React.Fragment>
         {
-          COPY_RIGHT_CONFIG.map((item) => (
+          COPY_RIGHT_CONFIG && COPY_RIGHT_CONFIG.map((item) => (
             item.to.includes('http') ? (
               <a className="list" title={item.name} target="_black" key={item.name} href={item.to}>{item.name}</a>
             ) : (
