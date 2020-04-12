@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'web-next',
       script: 'npm',
-      args: 'start_prod',
+      args: 'start',
       instances: 'max',
       exec_mode: 'cluster',
       max_memory_restart: '200M',

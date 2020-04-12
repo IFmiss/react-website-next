@@ -23,7 +23,8 @@ const Layout: NextPage<LayoutProps> = (props) => {
         <meta name="description" content={props.desc}/>
         <meta name="Keywords" content={props.keywords}/>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        {/* <link rel="manifest" href="/static/manifest.json"></link> */}
+        <link rel="manifest" href="/static/manifest.json"></link>
+        <script src="/static/register.sw.js"></script>
       </Head>
       <div id="dw-react-web-container" className={classStringContainer}>
         {props.children}

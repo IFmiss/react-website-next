@@ -57,7 +57,7 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
   })
 
   useEffect(() => {
-    eleToTop()
+    // eleToTop()
     renderImage()
   }, [])
 
