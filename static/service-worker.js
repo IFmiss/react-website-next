@@ -37,10 +37,10 @@ function workboxSetting () {
     })
   );
 
-  // workbox.routing.registerRoute(
-  //   new RegExp('https://www.daiwei.site'),
-  //   workbox.strategies.staleWhileRevalidate()
-  // );
+  workbox.routing.registerRoute(
+    new RegExp('daiwei.site'),
+    workbox.strategies.staleWhileRevalidate()
+  );
 
   workbox.routing.registerRoute(
     /\/api/,
