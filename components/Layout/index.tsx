@@ -24,7 +24,7 @@ const Layout: NextPage<LayoutProps> = (props) => {
         <meta name="Keywords" content={props.keywords}/>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         <link rel="manifest" href="/static/manifest.json"></link>
-        <script src="/static/registerSw.js"></script>
+        <script src="https://www.daiwei.site/static/registerSw.js"></script>
       </Head>
       <div id="dw-react-web-container" className={classStringContainer}>
         {props.children}

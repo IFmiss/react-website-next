@@ -37,6 +37,8 @@ interface IBlogDetail {
   createDate: string;
   tagLists: IBlogListCategorieOrTag[];
   content: string;
+  keywords?: string;
+  desc?: string;
 }
 
 interface IBlogPrevNext {
@@ -56,10 +58,9 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
     [`${PROJECT_NAME}-blog-detail`]: true
   })
 
-  useEffect(() => {
-    // eleToTop()
-    renderImage()
-  }, [])
+  // useEffect(() => {
+  //   renderImage()
+  // }, [])
 
   const renderImage = async () => {
     const Zmage = require('react-zmage').default
@@ -100,18 +101,11 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
       )
     })
   }
-  
-  const eleToTop = () => {
-    const ele = document.getElementById('dw-next-container')
-    if (ele) {
-      ele.scrollTop = 0
-    }
-  }
 
   return (
     (
       detail && detail.id ? (
-        <Layout title={detail.name}>
+        <Layout title={detail.name} desc={detail.desc} keywords={detail.keywords}>
           <div className={classString}>
             <h1 className={`${classString}-title`}>{detail.name}</h1>
             <ReactMarkdown
