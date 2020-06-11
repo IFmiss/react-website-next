@@ -6,7 +6,7 @@ const CHCHE_URL = [
   './favicon.ico',
   './sw.js',
   './static/register-sw.js',
-  'https://www.daiwei.site/static/logo/dw.png'
+  // 'https://www.daiwei.site/static/logo/dw.png'
 ]
 
 // install、activate、message、fetch、push、async。
@@ -23,9 +23,9 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map(cacheName => {
+        cacheNames.map((cacheName, i) => {
           if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName)
+            return caches.delete(cacheNames[i])
           }
         })
       )
@@ -45,14 +45,17 @@ self.addEventListener('fetch', (event) => {
           .then((response) => {
             // 如何有缓存的话，那么就直接返回缓存，否则直接获取源文件
             return response ||
-                  (
-                    fetch(event.request).then((res) => {
-                      const cloneRes = res.clone()
-                      caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(event.request, cloneRes)
-                      })
+                  fetch(event.request)
+                  .then((res) => {
+                    const cloneRes = res.clone()
+                    caches.open(CACHE_NAME)
+                    .then((cache) => {
+                      cache.put(event.request, cloneRes)
                     })
-                  )
+                    return res;
+                  }).catch(err => {
+                    // console.log(err);
+                  });
           }
         )
       );

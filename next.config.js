@@ -18,7 +18,7 @@ module.exports = withPlugins(
     withLess
   ], {
     experimental: {
-      basePath: '/next'
+      // basePath: '/next'
     },
     assetPrefix: isPord ? '/web_next/' : '',
     distDir: '_next',
