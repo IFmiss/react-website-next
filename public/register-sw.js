@@ -3,6 +3,7 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js', {
       scope: '/'
     }).then(async function(registration) {
+      console.log('ServiceWorker registration success', registration)
       // Registration was successful
       // if (window.PushManager) {
       //   // registration
