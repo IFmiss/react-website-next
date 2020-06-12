@@ -34,8 +34,8 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
     return (
       <Provider store={store}>
-        <link rel="manifest" href="/static/manifest.json"/>
-        <script src="/static/register-sw.js"></script>
+        <link rel="manifest" href="/manifest.json"/>
+        <script src="/register-sw.js"></script>
         {/* <SiderWarp showFn={this.showFn}
                   hideFn={this.hideFn}
                   type='fixed'>
