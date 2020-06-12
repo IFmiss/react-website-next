@@ -20,7 +20,7 @@ module.exports = withPlugins(
     // experimental: {
     //   // basePath: '/next'
     // },
-    // assetPrefix: isPord ? '/web_next/' : '',
+    assetPrefix: isPord ? '/web_next/' : '',
     distDir: '_next',
     lessLoaderOptions: {
       javascriptEnabled: true,
