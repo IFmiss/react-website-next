@@ -1,7 +1,7 @@
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js', {
-      scope: '/'
+    navigator.serviceWorker.register('/web_next/static/sw.js', {
+      scope: '/web_next/static/'
     }).then(async function(registration) {
       console.log('ServiceWorker registration success', registration)
       // Registration was successful
