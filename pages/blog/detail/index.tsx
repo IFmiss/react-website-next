@@ -58,50 +58,6 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
     [`${PROJECT_NAME}-blog-detail`]: true
   })
 
-  // useEffect(() => {
-  //   renderImage()
-  // }, [])
-
-  const renderImage = async () => {
-    const Zmage = require('react-zmage').default
-    const imgs = Array.from(document.querySelectorAll('.react-next-web-blog-detail img'))
-    const lists = imgs.map(item => (
-      {
-        src: item.getAttribute('src') || '',
-        alt: "图片的占位文字，作为图片的标题, 请尽量保持简短",
-        className: 'testClassName'
-      }
-    ))
-    console.log(lists)
-    imgs.forEach((item, index) => {
-      const { src, alt } = lists[index]
-      const ele = document.createElement('p')
-      ele.className = 'image-wrapper'
-      const wrapperEle = item.parentNode && item.parentNode.insertBefore(ele, item)
-      item.parentNode?.removeChild(item)
-      ReactDOM.render(
-        <>
-          <LazyLoad
-            placeholder={
-              <img
-                className="title-header-logo"
-                src="https://www.daiwei.site/static/logo/dw.png"
-              />
-            }
-          >
-            <Zmage src={src}
-                alt={alt}
-                set={lists}
-                defaultPage={index}
-                >
-            </Zmage>
-          </LazyLoad>
-        </>,
-        wrapperEle as Element
-      )
-    })
-  }
-
   return (
     (
       detail && detail.id ? (

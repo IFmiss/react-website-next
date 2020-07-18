@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var SET_CONTAINER_ELE = 'SET_CONTAINER_ELE';","map":{"version":3,"sources":["/Users/daiwei/pr/react-website-next/store/mutation-types.ts"],"names":["SET_CONTAINER_ELE"],"mappings":"AAAA,OAAO,IAAMA,iBAAiB,GAAG,mBAA1B","sourcesContent":["export const SET_CONTAINER_ELE = 'SET_CONTAINER_ELE'"]},"metadata":{},"sourceType":"module"}
