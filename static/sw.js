@@ -6,8 +6,7 @@ const CHCHE_URL = [
   './favicon.ico',
   './sw.js',
   './register-sw.js',
-  './manifest.json',
-  './home'
+  './manifest.json'
   // 'https://www.daiwei.site/static/logo/dw.png'
 ]
 

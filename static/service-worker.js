@@ -1,69 +1,68 @@
-importScripts(
-  'https://storage.googleapis.com/workbox-cdn/releases/3.3.0/workbox-sw.js'
-);
+// service worker 注册
 
-function workboxSetting () {
-  workbox.core.setCacheNameDetails({
-    prefix: 'dw-app',
-    suffix: 'v1',
-    precache: 'dw-precache',
-    runtime: 'dw-runtime',
-  })
+const CACHE_NAME = 'dw-sw'
+const CHCHE_URL = [
+  './',
+  './favicon.ico',
+  './service-worker.js',
+  './manifest.json'
+  // 'https://www.daiwei.site/static/logo/dw.png'
+]
 
-  workbox.precaching([
-    // 注册成功后要立即缓存的资源列表
-  ])
+// install、activate、message、fetch、push、async。
 
-  // html的缓存策略
-  workbox.routing.registerRoute(
-    '/',
-    new NetworkFirst({ cacheName: 'html-cache' })
-  );
-
-  workbox.routing.registerRoute(
-    /\/blog/,
-    new StaleWhileRevalidate({ cacheName: 'html-cache' })
-  );
-
-  workbox.routing.registerRoute(
-    /\/blog\/detail\?id=.*/,
-    new NetworkFirst({ cacheName: 'html-cache' })
-  );
-
-  workbox.routing.registerRoute(
-    /\.(js|css)$/,
-    workbox.strategies.cacheFirst({
-      cacheName: 'css-js-cache'
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      cache.addAll(CHCHE_URL)
     })
-  );
+  )
+})
 
-  workbox.routing.registerRoute(
-    new RegExp('daiwei.site'),
-    workbox.strategies.staleWhileRevalidate()
-  );
-
-  workbox.routing.registerRoute(
-    /\/api/,
-    new NetworkFirst({ cacheName: 'api-cache' })
-  );
-
-  workbox.routing.registerRoute(
-    new RegExp('.*\.(?:png|jpg|jpeg|svg|gif|ico)$'),
-    new CacheFirst({
-      cacheName: 'image-cache',
-      plugins: [
-        new workbox.expiration.Plugin({
-          maxEntries: 20,
-          maxAgeSeconds: 7 * 24 * 60 * 60,
-        }),
-      ],
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName, i) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheNames[i])
+          }
+        })
+      )
     })
-  );
-}
+  )
+})
 
-if (workbox) {
-  workboxSetting()
-  console.log('🌹box load success')
-} else {
-  console.log('box load fail 😊')
-}
+
+self.addEventListener('fetch', (event) => {
+
+  // 只针对 http请求，
+  if (/(http|https):\/\//.test(event.request.url) &&
+      !event.request.url.includes('webpack-hmr')) {
+
+      event.respondWith(
+        caches.match(event.request)
+          .then((response) => {
+            // 如何有缓存的话，那么就直接返回缓存，否则直接获取源文件
+            return response ||
+                  fetch(event.request)
+                  .then((res) => {
+                    const cloneRes = res.clone()
+                    caches.open(CACHE_NAME)
+                    .then((cache) => {
+                      cache.put(event.request, cloneRes)
+                    })
+                    return res;
+                  }).catch(err => {
+                    // console.log(err);
+                  });
+          }
+        )
+      );
+  }
+});
+
+
+self.addEventListener('push', (event) => {
+  // console.log('push e', event)
+})
