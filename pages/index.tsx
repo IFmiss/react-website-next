@@ -69,7 +69,7 @@ const Home: NextPage<HomePorps, {}> = ({
 }
 
 Home.getInitialProps = async () => {
-  const res = await http.get(`https://daiwei.site/api${BING_PAPERS}`)
+  const res = await http.get(`https://www.daiwei.site/api${BING_PAPERS}`)
   console.log('res', res.result)
   return {
     bing: res.result || []
