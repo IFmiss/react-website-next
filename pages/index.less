@@ -1,0 +1,60 @@
+@text-color: rgba(255, 255, 255, 0.66);
+.@{project-prefix}-home {
+  .home-tip {
+    margin: 30px 0;
+  }
+  color: @text-color;
+  .href-tip {
+    width: auto;
+    line-height: 28px;
+    border-radius: 14px;
+    font-size: 12px;
+    background: rgba(244, 244, 244, 0.2);
+    display: inline-block;
+    padding: 0 12px;
+    margin: 20px 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover {
+      background: rgba(244, 244, 244, 0.3);
+    }
+  }
+  a, a:active, a:hover, a:focus {
+    text-decoration: none;
+    color: @text-color;
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.react-next-wrapper {
+  background: transparent;
+}
+
+.react-next-web-nav .nav-content .nav-logo .nav-title {
+  color: @text-color;
+}
+
+.fixed-paper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: contain;
+  .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center center;
+    background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 10%, rgb(7, 17, 27) 90%); opacity: 0.9;
+  }
+}

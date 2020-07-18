@@ -17,9 +17,9 @@ module.exports = withPlugins(
   [
     withLess
   ], {
-    experimental: {
-      basePath: '/next'
-    },
+    // experimental: {
+    //   // basePath: '/next'
+    // },
     assetPrefix: isPord ? '/web_next/' : '',
     distDir: '_next',
     lessLoaderOptions: {
