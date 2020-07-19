@@ -43,13 +43,14 @@ const Home: NextPage<HomePorps, {}> = ({
       <div className={classString}>
         <p className='home-tip'>
           基于 next.js 的第四版本个人网站
+          {/* <p>{bing[0].copyright}</p> */}
         </p>
         <p className='href-tip'>
           <Link href="/blog">
             <a>blog</a>
           </Link>
         </p>
-        <a className='href-tip' href="https://w1.daiwei.site/home">
+        <a className='href-tip' href="https://w1.daiwei.site/web_v3/">
           <span>react v3 版本</span>
         </a>
         <a className='href-tip' href="https://v2.daiwei.site">
