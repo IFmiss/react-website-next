@@ -29,7 +29,7 @@ class MyApp extends App<AppProps, AppState> {
         <div className={`${this.classWrapperString}`} id='dw-next-container'>
           <div className='react-next-content'>
             <header>
-              <Nav/>
+              <Nav name={pageProps.name}/>
             </header>
             <section>
               <Component {...pageProps} />

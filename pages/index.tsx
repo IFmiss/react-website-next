@@ -33,10 +33,6 @@ const Home: NextPage<HomePorps, {}> = ({
     [`${PROJECT_NAME}-home`]: true
   })
 
-  useEffect(() => {
-    console.log(bing)
-  })
-
   return (
     <Layout>
       <div className='fixed-paper' style={{
@@ -50,19 +46,15 @@ const Home: NextPage<HomePorps, {}> = ({
         </p>
         <p className='href-tip'>
           <Link href="/blog">
-            blog
+            <a>blog</a>
           </Link>
         </p>
-        <p className='href-tip'>
-          <a href="https://w1.daiwei.site/home">
-            react v3 版本
-          </a>
-        </p>
-        <p className='href-tip'>
-          <a href="https://v2.daiwei.site">
-            vue v2 版本
-          </a>
-        </p>
+        <a className='href-tip' href="https://w1.daiwei.site/home">
+          <span>react v3 版本</span>
+        </a>
+        <a className='href-tip' href="https://v2.daiwei.site">
+          <span>react v2 版本</span>
+        </a>
       </div>
     </Layout>
   )
@@ -70,9 +62,9 @@ const Home: NextPage<HomePorps, {}> = ({
 
 Home.getInitialProps = async () => {
   const res = await http.get(`https://www.daiwei.site/api${BING_PAPERS}`)
-  console.log('res', res.result)
   return {
-    bing: res.result || []
+    bing: res.result || [],
+    name: 'home'
   }
 }
 

@@ -6,10 +6,18 @@ import {
   WEBSITE_TITLE
 } from '@constance/index' 
 import Link from 'next/link'
+import { Next } from 'koa'
 
-const Nav = () => {
+interface NavProps {
+  name?: string;
+}
+
+const Nav: React.FC<NavProps> = ({
+  name
+}) => {
   const classString = classNames({
-    [`${PROJECT_NAME}-nav`]: true
+    [`${PROJECT_NAME}-nav`]: true,
+    [`${PROJECT_NAME}-nav-${name}`]: name
   })
 
   return (
