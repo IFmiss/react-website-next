@@ -2,7 +2,10 @@
 
 const CACHE_NAME = 'dw-sw'
 const CHCHE_URL = [
-  // 'https://www.daiwei.site/static/logo/dw.png'
+  '/favicon.ico',
+  '/service-worker.js',
+  '/manifest.json',
+  '/registerSw.js'
 ]
 
 // install、activate、message、fetch、push、async。
