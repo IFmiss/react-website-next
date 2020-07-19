@@ -23,6 +23,7 @@ const Layout: NextPage<LayoutProps> = (props) => {
         <meta name="description" content={props.desc}/>
         <meta name="Keywords" content={props.keywords}/>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet"/>
         <link rel="shortcut icon" href="https://www.daiwei.site/static/logo/dw.png" type="image/x-icon"></link>
         <link rel="manifest" href="/static/manifest.json"></link>
         <script src="/static/registerSw.js"></script>
