@@ -1,1 +1,2 @@
 export const SET_CONTAINER_ELE = 'SET_CONTAINER_ELE'
+export const SET_BING_PAPER = 'SET_BING_PAPER'
