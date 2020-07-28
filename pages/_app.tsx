@@ -16,6 +16,10 @@ import { BingPaper } from '.'
 interface AppProps {}
 interface AppState {}
 
+const NEED_BING_PATHS = [
+  '/'
+]
+
 class MyApp extends App<AppProps, AppState> {
   componentDidMount() {
     useGrayPage()
@@ -35,7 +39,8 @@ const AppWrap: React.FC<any> = (props) => {
   const { bing } = useSelector((state: { base: { bing:  BingPaper[]} }) => state.base)
   const classWrapperString = classNames({
     [`react-next-wrapper`]: true,
-    [`theme-default`]: true
+    [`theme-default`]: true,
+    ['bg-bing']: NEED_BING_PATHS.includes(props.router.pathname)
   })
 
   useEffect(() => {
@@ -54,11 +59,15 @@ const AppWrap: React.FC<any> = (props) => {
   const { Component, pageProps } = props
   return (
     <>
-      <div className='fixed-paper' style={{
-          backgroundImage: `url(${bing?.length && bing[0]?.url})`
-        }}>
-          <div className='mask'></div>
-        </div>
+      {
+        bing?.length && bing[0]?.url && (
+          <div className='fixed-paper' style={{
+            backgroundImage: `url(${bing?.length && bing[0]?.url})`
+          }}>
+            <div className='mask'></div>
+          </div>
+        ) || null
+      }
       <div className={`${classWrapperString}`} id='dw-next-container'>
         <div className='react-next-content'>
           <header>
