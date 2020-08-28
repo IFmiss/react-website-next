@@ -39,6 +39,9 @@ const Home: NextPage<HomePorps, {}> = () => {
             <a>blog</a>
           </Link>
         </p>
+        <a className='href-tip' href="https://https://www.omnidoor.cn/">
+          <span>🐸 omni door-cli</span>
+        </a>
         <a className='href-tip' href="https://w1.daiwei.site/web_v3/">
           <span>react v3 版本</span>
         </a>
