@@ -108,7 +108,8 @@ BlogDetail.getInitialProps = async (ctx) => {
   return {
     detail: data.result && data.result.detail || {},
     next: data.result && data.result.next || null,
-    prev: data.result && data.result.prev || null
+    prev: data.result && data.result.prev || null,
+    name: 'blogDetail'
   }
 }
 

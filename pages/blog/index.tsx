@@ -67,7 +67,8 @@ Blog.getInitialProps = async (ctx) => {
     params: { page: '0', size: '666', type: '全部' }
   })
   return {
-    blogInfo: res.data && res.data.result || {}
+    blogInfo: res.data && res.data.result || {},
+    name: 'blogList'
   }
 }
 

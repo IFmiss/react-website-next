@@ -28,8 +28,11 @@
 @dark-text-color-active: #eee;
 
 // 背景色
-@light-bg: #fff;
+// @light-bg: #fff;
 @dark-bg: #111213;
+
+@light-bg: rgba(255, 255, 255, 0.86);
+@dark-bg: rgba(17, 18, 19, 0.86);
 
 // 遮罩层背景色
 @light-mask-bg: rgba(244,244,244,0.3);
@@ -129,3 +132,30 @@ body {
     }
   }
 }
+
+// bing
+.fixed-paper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: contain;
+  .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center center;
+    background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 10%, rgb(7, 17, 27) 100%);
+    opacity: 1;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+}
+
