@@ -34,11 +34,9 @@ const Home: NextPage<HomePorps, {}> = () => {
         <p className='home-tip'>
           基于 next.js 的第四版本个人网站
         </p>
-        <p className='href-tip'>
-          <Link href="/blog">
-            <a>blog</a>
-          </Link>
-        </p>
+        <Link href="/blog">
+          <a className='href-tip'>blog</a>
+        </Link>
         <a className='href-tip' href="https://w1.daiwei.site/web_v3/">
           <span>react v3 版本</span>
         </a>
