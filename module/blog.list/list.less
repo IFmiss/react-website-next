@@ -6,6 +6,16 @@
     padding: 15px;
     display: block;
     transition: border 0.3s;
+    position: relative;
+    &::after {
+      content: '';
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--border-color);
+      transform: scaleY(0.6);
+      position: absolute;
+    }
   }
   &:hover {
     a {
@@ -15,9 +25,34 @@
     }
   }
   &-title {
-    font-weight: 200;
+    font-weight: 400;
+    font-size: 18px;
     color: var(--primary-color);
     margin: 0;
     padding: 5px 0;
+  }
+  &-info {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  &-time {
+    color: var(--text-color);
+  }
+
+  &-tags {
+    margin-left: 10px;
+  }
+  &-tag {
+    margin-right: 10px;
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.2;
+    border-radius: 3px;
+    color: #fff;
+    background-color: var(--primary-opacity-color);
   }
 }

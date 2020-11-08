@@ -1,10 +1,9 @@
-import React, {
-  // useEffect
-} from 'react'
+import React, { useEffect } from 'react'
 import { PROJECT_NAME } from '@root/constance'
 import classNames from 'classnames'
 import Link from 'next/link'
 import './list.less'
+import { fmtTime } from '@root/utils/utils'
 
 export interface BlogListCategorieOrTag {
   id: string;
@@ -31,11 +30,29 @@ const BlogList: React.FC<BlogListProps> = ({ list }) => {
     [`${PROJECT_NAME}-comp-blog-list`]: true
   })
 
+  useEffect(() => {
+    console.info('list', list);
+  }, [])
+  
   return (
     <li className={classString}>
       <Link href={`/blog/detail?id=${list.id}`}>
         <a title={list.name}>
           <h2 className={`${classString}-title`}>{list.name}</h2>
+          <div className={`${classString}-info`}>
+            <span className={`${classString}-time`}>{fmtTime(list.createDate)}</span>
+            {
+              list.tagLists.length && (
+                <div className={`${classString}-tags`}>
+                  {
+                    list.tagLists.map(item => (
+                      <span className={`${classString}-tag`}>{item.name}</span>
+                    ))
+                  }
+                </div>
+              ) || null
+            }
+          </div>
         </a>
       </Link>
     </li>

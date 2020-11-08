@@ -171,3 +171,29 @@ export function isAppleDevice(): boolean {
   const ua = navigator.userAgent.toLowerCase()
   return /|iphone|ipod|ipad|ios|mac/.test(ua)
 }
+
+
+export function fmtTime (str: string): string {
+  const t = new Date(str)
+  const timer = t.getTime();
+  const timeDiff = (new Date().getTime() - timer) / 1000;
+  if (timeDiff < 60) {
+    return '刚刚';
+  }
+  if (timeDiff < 60 * 60) {
+    return `${~~(timeDiff / 60)}分钟前`;
+  }
+  if (timeDiff < 60 * 60 * 24) {
+    return `${~~(timeDiff / 60 / 60)}小时前`;
+  }
+  if (timeDiff < 60 * 60 * 24 * 30) {
+    return `${~~(timeDiff / 24 / 60 / 60)}天前`;
+  }
+  if (timeDiff < 60 * 60 * 24 * 30) {
+    return `${~~(timeDiff / 24 / 60 / 60)}天前`;
+  }
+  if (timeDiff < 180 * 24 * 60 * 60) {
+    return formatDate('MM-dd', t);
+  }
+  return formatDate('yyyy-MM-dd', t);
+}

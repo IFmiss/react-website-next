@@ -4,7 +4,7 @@
 }
 
 // 主色调
-@light_main: #d6693d;
+@light_main: #3db2d6;
 @dark_main: pink;
 
 // 阴影
@@ -35,8 +35,12 @@
 @dark-bg: rgba(17, 18, 19, 0.86);
 
 // 遮罩层背景色
-@light-mask-bg: rgba(244,244,244,0.3);
+@light-mask-bg: rgba(244,244,244,0.2);
 @dark-mask-bg: rgba(0,0,0,0.3);
+
+// 注册透明
+@primary-opacity-light: rgba(61, 178, 214, 0.522);
+@primary-opacity-dark: rgba(255, 192, 203, 0.822);
 
 :root {
   --shadow-color: @light-shadow-color;
@@ -47,6 +51,7 @@
   --text-color-active: @light-text-color-active;
   --mask-bg: @light-mask-bg;
   --bg: @light-bg;
+  --primary-opacity-color: @primary-opacity-light;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -59,6 +64,7 @@
     --text-color-active: @dark-text-color-active;
     --mask-bg: @dark-mask-bg;
     --bg: @dark-bg;
+    --primary-opacity-color: @primary-opacity-dark;
   }
 }
 
