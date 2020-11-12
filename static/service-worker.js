@@ -3,7 +3,7 @@
 const CACHE_NAME = 'dw-sw'
 const CHCHE_URL = [
   '/favicon.ico',
-  '/service-worker.js',
+  '/sw.js',
   '/manifest.json',
   '/registerSw.js'
 ]
