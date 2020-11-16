@@ -67,7 +67,6 @@ const Music = () => {
   }
 
   const formatMusicLists = (lists: any[]) => {
-    console.log('lists', lists)
     return lists.map((item: any) => {
       item.album = item.al
       item.artists = item.ar

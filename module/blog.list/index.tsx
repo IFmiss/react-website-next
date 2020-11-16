@@ -46,7 +46,8 @@ const BlogList: React.FC<BlogListProps> = ({ list }) => {
                 <div className={`${classString}-tags`}>
                   {
                     list.tagLists.map(item => (
-                      <span className={`${classString}-tag`}>{item.name}</span>
+                      <span className={`${classString}-tag`}
+                        key={item.id}>{item.name}</span>
                     ))
                   }
                 </div>

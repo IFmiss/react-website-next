@@ -49,6 +49,7 @@ const Blog: NextPage<BlogProps, {}> = (props) => {
     props.setContainerEle('a')
   }, [])
 
+
   return (
     <Layout>
       <div className={classString}>
