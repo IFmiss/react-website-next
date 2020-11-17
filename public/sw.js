@@ -30,6 +30,12 @@ self.addEventListener('install', (event) => {
   )
 })
 
+self.addEventListener('push', function(event) {
+  console.info('push message')
+  const title = event.data.text();
+  console.info('title', title);
+})
+
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {

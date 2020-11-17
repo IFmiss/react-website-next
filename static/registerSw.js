@@ -44,6 +44,7 @@ if ('serviceWorker' in navigator) {
     if (window.PushManager) {
       registration.pushManager.getSubscription().then(subscription => {
         // 如果用户没有订阅
+        console.info('s', JSON.stringify(subscription))
         if (!subscription) {
           subscribeUser(registration);
         } else {
@@ -64,12 +65,13 @@ function subscribeUser(registration) {
 
   const applicationServerPublicKey = 'BJOVnfkuVBZBXMVVzdFOtQGbAHvdoF7-7AcGHa7J8bGEL3tI_Htb7bxGtsNzTiHqmcXwm7YkNNO_0auf1AP8m-A';
   const applicationServerKey = urlBase64ToUint8Array(applicationServerPublicKey);
+  console.info(123123, applicationServerKey)
   registration.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: applicationServerKey
-  }).then(function(subscription) {
+      applicationServerKey
+  }).then((subscription) => {
     // ajax
-
+    console.info('subscription', JSON.stringify(subscription))
   }).catch(function(err) {
     // 用户不同意或者生成失败
     console.log('Failed to subscribe the user: ', err);
