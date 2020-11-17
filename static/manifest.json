@@ -13,5 +13,6 @@
   ],
   "start_url": "/",
   "background_color": "#fff",
-  "lang": "zh-cn"
+  "lang": "zh-cn",
+  "gcm_sender_id": 960070276528
 }
