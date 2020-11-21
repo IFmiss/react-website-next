@@ -41,18 +41,18 @@
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').then((registration) => {
     console.log('service-worker: 👌👌👌');
-    if (window.PushManager) {
-      registration.pushManager.getSubscription().then(subscription => {
-        // 如果用户没有订阅
-        console.info('s', JSON.stringify(subscription))
-        if (!subscription) {
-          subscribeUser(registration);
-        } else {
-          console.info(subscription)
-          console.log("You have subscribed our notification");
-        } 
-      })
-    }
+    // if (window.PushManager) {
+    //   registration.pushManager.getSubscription().then(subscription => {
+    //     // 如果用户没有订阅
+    //     console.info('s', JSON.stringify(subscription))
+    //     if (!subscription) {
+    //       subscribeUser(registration);
+    //     } else {
+    //       console.info(subscription)
+    //       console.log("You have subscribed our notification");
+    //     } 
+    //   })
+    // }
   })
 }
 
