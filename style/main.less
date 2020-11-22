@@ -4,7 +4,7 @@
 }
 
 // 主色调
-@light_main: #3db2d6;
+@light_main: rgb(34, 180, 124);
 @dark_main: pink;
 
 // 阴影
@@ -20,26 +20,31 @@
 @dark-border-color-deep: rgba(222, 222, 222, 0.2);
 
 // 文字颜色
-@light-text-color: #666;
-@dark-text-color: #999;
+@light-text-color: #c1c1c1;
+@dark-text-color: #aaa;
 
 // 文字高亮颜色
-@light-text-color-active: #333;
+@light-text-color-active: #eee;
 @dark-text-color-active: #eee;
 
 // 背景色
 // @light-bg: #fff;
 @dark-bg: #111213;
 
-@light-bg: rgba(255, 255, 255, 0.86);
-@dark-bg: rgba(17, 18, 19, 0.86);
+@br: 6px;
+
+@light-bg: rgba(225, 235, 245, 0.2);
+@dark-bg: rgba(17, 18, 19, 0.3);
+
+@light-code-bg: rgba(66, 77, 88, 0.7);
+@dark-code-bg: rgba(17, 18, 19, 0.7);
 
 // 遮罩层背景色
 @light-mask-bg: rgba(244,244,244,0.2);
 @dark-mask-bg: rgba(0,0,0,0.3);
 
 // 注册透明
-@primary-opacity-light: rgba(61, 178, 214, 0.522);
+@primary-opacity-light: rgba(34, 180, 124, 0.522);
 @primary-opacity-dark: rgba(255, 192, 203, 0.822);
 
 :root {
@@ -50,8 +55,11 @@
   --text-color: @light-text-color;
   --text-color-active: @light-text-color-active;
   --mask-bg: @light-mask-bg;
-  --bg: @light-bg;
+  --bg: transparent;
+  --theme-bg: @light-bg;
   --primary-opacity-color: @primary-opacity-light;
+  --br: @br;
+  --code-bg: @light-code-bg;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -63,8 +71,11 @@
     --text-color: @dark-text-color;
     --text-color-active: @dark-text-color-active;
     --mask-bg: @dark-mask-bg;
-    --bg: @dark-bg;
+    --bg: transparent;
+    --theme-bg: @dark-bg;
     --primary-opacity-color: @primary-opacity-dark;
+    --br: @br;
+    --code-bg: @dark-code-bg;
   }
 }
 
@@ -77,7 +88,10 @@
     --text-color: @light-text-color;
     --text-color-active: @light-text-color-active;
     --mask-bg: @light-mask-bg;
-    --bg: @light-bg;
+    --theme-bg: @light-bg;
+    --bg: transparent;
+    --br: @br;
+    --code-bg: @light-code-bg;
   }
 }
 
@@ -86,6 +100,11 @@ body {
   height: auto;
   overflow: auto;
   background: var(--bg);
+  .highlight-block {
+    pre {
+      background-color: var(--code-bg)!important;
+    }
+  }
 }
 
 .react-next-wrapper {
@@ -106,7 +125,7 @@ body {
 }
 
 #dw-react-web-container {
-  padding: 15px 15px;
+  // padding: 15px;
 }
 
 .react-next-content {

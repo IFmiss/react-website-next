@@ -57,46 +57,42 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
   })
 
   return (
-    (
-      detail && detail.id ? (
-        <Layout title={detail.name} desc={detail.desc} keywords={detail.keywords}>
-          <div className={classString}>
-            <h1 className={`${classString}-title`}>{detail.name}</h1>
-            <ReactMarkdown
-              source={detail.content}
-              escapeHtml={true}
-              skipHtml={true}
-              renderers={{
-                code: CodeBlock
-              }}/>
-            <div className={`${classString}-entry`}>
-              {
-                prev?.id ? (
-                  <Link href={`/blog/detail?id=${prev.id}`}>
-                    <a href={`/blog/detail?id=${prev.id}`} className={`${classString}-entry-prev`}
-                        title={prev.name || ''}>
-                      { prev.name ? `上一篇 : ${prev.name}` : '' }
-                    </a>
-                  </Link>
-                ) : null
-              }
-              {
-                next?.id ? (
-                  <Link href={`/blog/detail?id=${next.id}`}>
-                    <a className={`${classString}-entry-next`}
-                        title={next.name || ''}>
-                      { next.name ? `下一篇 : ${next.name}` : '' }
-                    </a>
-                  </Link >
-                ) : null
-              }
-            </div>
+    detail && detail.id ? (
+      <Layout title={detail.name} desc={detail.desc} keywords={detail.keywords}>
+        <div className={classString}>
+          <h1 className={`${classString}-title`}>{detail.name}</h1>
+          <ReactMarkdown
+            source={detail.content}
+            escapeHtml={true}
+            skipHtml={true}
+            renderers={{
+              code: CodeBlock
+            }}/>
+          <div className={`${classString}-entry`}>
+            {
+              prev?.id ? (
+                <Link href={`/blog/detail?id=${prev.id}`}>
+                  <a href={`/blog/detail?id=${prev.id}`} className={`${classString}-entry-prev`}
+                      title={prev.name || ''}>
+                    { prev.name ? `上一篇 : ${prev.name}` : '' }
+                  </a>
+                </Link>
+              ) : null
+            }
+            {
+              next?.id ? (
+                <Link href={`/blog/detail?id=${next.id}`}>
+                  <a className={`${classString}-entry-next`}
+                      title={next.name || ''}>
+                    { next.name ? `下一篇 : ${next.name}` : '' }
+                  </a>
+                </Link >
+              ) : null
+            }
           </div>
-        </Layout>
-      ) : (
-        <div>加载中...</div>
-      )
-    )
+        </div>
+      </Layout>
+    ) : <div>加载中...</div>
   )
 }
 
