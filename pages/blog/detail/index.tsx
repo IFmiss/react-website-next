@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import {
   NextPage
 } from 'next'
 import Layout from '@components/Layout'
 import {
-  ARTICLE_DETAIL
+  ARTICLE_DETAIL, UPDATE_ARTICLE_COUNT
 } from '@constance/api'
 import classNames from 'classnames'
 import {
@@ -15,14 +15,12 @@ import ReactMarkdown from 'react-markdown'
 import './detail.less'
 import CodeBlock from "@components/CodeBlock";
 import Link from 'next/link'
-import LazyLoad from 'react-lazyload'
 
 import { 
   IStore
 } from '@store/types';
 import MainAction from '@root/store/actions/index'
 import { connect } from 'react-redux'
-import ReactDOM from 'react-dom'
 
 interface IBlogListCategorieOrTag {
   id: string;
@@ -73,9 +71,9 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
               }}/>
             <div className={`${classString}-entry`}>
               {
-                prev && prev.id ? (
+                prev?.id ? (
                   <Link href={`/blog/detail?id=${prev.id}`}>
-                    <a className={`${classString}-entry-prev`}
+                    <a href={`/blog/detail?id=${prev.id}`} className={`${classString}-entry-prev`}
                         title={prev.name || ''}>
                       { prev.name ? `上一篇 : ${prev.name}` : '' }
                     </a>
@@ -83,7 +81,7 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
                 ) : null
               }
               {
-                next && next.id ? (
+                next?.id ? (
                   <Link href={`/blog/detail?id=${next.id}`}>
                     <a className={`${classString}-entry-next`}
                         title={next.name || ''}>
@@ -104,6 +102,10 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
 
 BlogDetail.getInitialProps = async (ctx) => {
   const { id }  = ctx.query
+  
+  // 更新阅览数  不阻塞
+  http.get(`${UPDATE_ARTICLE_COUNT}/${id}`)
+
   const { data } = await http.get(`${ARTICLE_DETAIL}/${id}`)
   return {
     detail: data.result && data.result.detail || {},

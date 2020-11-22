@@ -1,5 +1,6 @@
 export const ARTICLE_LISTS = `/article/lists`
 export const ARTICLE_DETAIL = `/article/detail`
+export const UPDATE_ARTICLE_COUNT = `/article/updateReadCount`
 export const BING_PAPERS = `/bing/wallpaper`
 
 export const MUSIC_RANK = `/netease/top/list?idx=1&offset=0&limit=20`
