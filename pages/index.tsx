@@ -4,7 +4,7 @@ import {
   NextPage
 } from 'next'
 import classNames from 'classnames'
-import { PROJECT_NAME } from '@root/constance'
+import { PROJECT_NAME, HOME_LINK_LISTS } from '@root/constance'
 import Link from 'next/link'
 import './index.less'
 
@@ -34,18 +34,23 @@ const Home: NextPage<HomePorps, {}> = () => {
         <p className='home-tip'>
           基于 next.js 的第四版本个人网站
         </p>
-        <Link href="/blog">
-          <a className='href-tip'>blog</a>
-        </Link>
-        <a className='href-tip' href="https://w1.daiwei.site/web_v3/">
-          <span>react v3 版本</span>
-        </a>
-        <a className='href-tip' href="https://v2.daiwei.site">
-          <span>react v2 版本</span>
-        </a>
-        <a className='href-tip' href="https://www.omnidoor.org?res=daiwei">
-          <span>🐸 omni door-cli</span>
-        </a>
+        <div className='tip-lists'>
+          {
+            HOME_LINK_LISTS.map((item, index) => (
+              item.self ? (
+                <Link key={index} href={item.href}>
+                  <a className='href-tip'>{item.title}</a>
+                </Link>
+              ) : (
+                <a key={index} className='href-tip' href={item.href}>
+                  <span>{typeof item.title == 'function'
+                    ? item.title()
+                    : item.title}</span>
+                </a>
+              )
+            ))
+          }
+        </div>
       </div>
     </Layout>
   )

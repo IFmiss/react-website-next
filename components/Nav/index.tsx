@@ -24,7 +24,7 @@ const Nav: React.FC<NavProps> = ({
     <nav className={ classString }>
       <div className="nav-content">
         <div className="nav-logo">
-          <Link href="/blog">
+          <Link href="/">
             <a>
               <h2 className="nav-title">{WEBSITE_TITLE}</h2>
             </a>

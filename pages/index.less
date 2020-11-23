@@ -1,23 +1,41 @@
 @text-color: rgba(255, 255, 255, 0.66);
 .@{project-prefix}-home {
+  padding: 16px;
+  color: @text-color;
   .home-tip {
     margin: 30px 0;
   }
-  color: @text-color;
-  .href-tip {
-    width: auto;
-    line-height: 28px;
-    border-radius: 14px;
-    font-size: 14px;
-    background: rgba(244, 244, 244, 0.2);
-    display: inline-block;
-    margin: 20px 10px;
-    transition: all 0.3s;
-    cursor: pointer;
-    &:hover {
-      background: rgba(244, 244, 244, 0.3);
+  .tip-lists {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    .href-tip {
+      width: auto;
+      line-height: 28px;
+      border-radius: 14px;
+      font-size: 14px;
+      background: rgba(244, 244, 244, 0.2);
+      display: inline-block;
+      transition: all 0.3s;
+      cursor: pointer;
+      margin: 10px 10px;
+      display: inline-flex;
+      align-items: center;
+      &:hover {
+        background: rgba(244, 244, 244, 0.3);
+      }
+      span {
+        display: flex;
+        align-items: center;
+        height: 28px;
+      }
     }
   }
+
+  p {
+    text-align: center;
+  }
+
   a, a:active, a:hover, a:focus {
     text-decoration: none;
     color: @text-color;
@@ -25,10 +43,6 @@
 
   a {
     padding: 0 12px;
-  }
-
-  p {
-    text-align: center;
   }
 }
 
