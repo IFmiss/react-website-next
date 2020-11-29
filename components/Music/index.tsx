@@ -7,13 +7,7 @@ import loadable from '@loadable/component'
 import {
   artists, MusicGroupList
 } from './types'
-import { IDAudio } from '../Audio'
-import audioFn from '@components/Audio/main'
 const Ripple = loadable(() => import('ripple-button'))
-const audioInstance = audioFn({
-  style: 'rect'
-})
-
 const Music = () => {
   const [tracksLists, setTracksLists] = useState<any>([])
   const [playIndex, setPlayIndex] = useState<number>(0)
@@ -51,7 +45,7 @@ const Music = () => {
       name: item.name,
       disc: formatMusicArtists(formatDetail[0].artists)
     }
-    audioInstance && audioInstance.cut(st)
+    // audioInstance && audioInstance.cut(st)
   }
 
   const checkMusic = async (index: number) => {

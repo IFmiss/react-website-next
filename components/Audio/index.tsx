@@ -7,6 +7,8 @@ import PlayIcon from './play.svg'
 import {
   throttle
 } from './utils'
+import { async } from '@root/_next/static/runtime/main'
+const Vibrant = require('node-vibrant');
 
 export type EventType = 'onEnded' | 'onNext'
 
@@ -16,6 +18,10 @@ type DaudioStyle = 'rect' | 'circle'
 
 type DaudioEventType = {
   [props in EventType]?: Function
+}
+
+type RGB = {
+  [k in 'r' | 'g' | 'b']: number;
 }
 
 type DaudioEventTypeQueue = {
@@ -111,6 +117,11 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
   onNext
 }, ref) => {
   const [playing, setPlaying] = useState<boolean>(false)
+  const [rgb, setRgb] = useState<RGB>({
+    r: 7,
+    g: 17,
+    b: 27
+  })
   const [loading, setLoading] = useState<boolean>(false)
   const [progress, setProgress] = useState<number>(0)
   const [audioStyle, setAudioStyle] = useState<DaudioStyle>(style)
@@ -234,6 +245,7 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
     }
     load()
     setPlayQueue([nextAudio])
+    getColorByImg(nextAudio.coverUrl);
     play()
   }
 
@@ -313,12 +325,25 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
     backgroundPosition: 'center center'
   }
 
+  const getColorByImg = async (pic: string) => {
+    let r;
+    if (!currentPlayList.coverUrl) {
+      r = {
+        r: '7',
+        g: '17',
+        b: '27'
+      }
+    }
+    r = (await Vibrant.from(pic).getPalette()).LightMuted;
+    setRgb(r);
+  };
+
   const rangeStyle = {
-    border: `3px solid rgba(0, 0, 0, 0.6)`
+    border: `3px solid rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`
   }
 
   const progressStyle = {
-    backgroundImage: `linear-gradient(to right, red 30%, blue)`,
+    backgroundImage: `linear-gradient(to right, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1) 30%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.7))`,
     width: `${progress}%`
   }
 
@@ -395,6 +420,6 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
 }
 
 // export default Daudio
-const AudioComponent = React.forwardRef(Daudio)
+const AudioComponent = React.forwardRef<IDAudioRef>(Daudio)
 
 export default AudioComponent
