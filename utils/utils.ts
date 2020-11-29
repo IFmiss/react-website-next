@@ -172,6 +172,9 @@ export function isAppleDevice(): boolean {
   return /|iphone|ipod|ipad|ios|mac/.test(ua)
 }
 
+export const getUrlById = (id: number) => {
+  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+};
 
 export function fmtTime (str: string): string {
   const t = new Date(str)

@@ -32,12 +32,10 @@ const Music = () => {
   }
 
   const checkNext = () => {
-    console.log('playIndex', playIndex)
     setPlayIndex(playIndex + 1)
   }
 
   useEffect(() => {
-    console.log('index changed', playIndex)
     if (tracksLists && tracksLists.length) {
       playAudioByIndex()
     }
@@ -47,7 +45,6 @@ const Music = () => {
     const item = tracksLists[playIndex]
     const { data: { songs : musicDetail } } = await getMusicDetailById(item.id)
     const formatDetail: any = formatMusicLists(musicDetail)
-    console.log('formatDetail', formatDetail)
     const st = {
       url: getUrlById(item.id),
       coverUrl: clipImage(formatDetail[0].album.picUrl),

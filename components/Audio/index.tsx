@@ -4,7 +4,6 @@ import './audio.less'
 import NextIcon from './next.svg'
 import PauseIcon from './pause.svg'
 import PlayIcon from './play.svg'
-import ReactDOM from 'react-dom'
 import {
   throttle
 } from './utils'
@@ -107,7 +106,7 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
   style = 'circle',
   type = 'handle',
   playType = 'sequential-play',
-  playList = [DEFAULT_PLAY_INFO],
+  playList = [],
   handle,
   onNext
 }, ref) => {
@@ -131,7 +130,7 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
   }, [audioTypeState])
 
   const currentPlayList = useMemo(() => {
-    return audioTypeState === 'handle' ? playQueue[0] : playQueue[playIndex]
+    return audioTypeState === 'handle' ? playQueue[0] ?? {} : playQueue[playIndex] ?? {}
   }, [playIndex, playQueue[0]])
 
   const isLoop = useMemo(() => {
@@ -139,15 +138,11 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
   }, [playTypeState])
 
   const checkAudioType = () => {
-    if (audioStyle === 'rect') {
-      setAudioStyle((audioStyle) => audioStyle = 'circle')
-    } else {
-      setAudioStyle((audioStyle) => audioStyle = 'rect')
-    }
+    setAudioStyle((audioStyle) => audioStyle === 'rect' ? 'circle' : 'rect');
   }
 
   useEffect(() => {
-    (audioRef.current  as any).addEventListener('timeupdate', onAudioTimeUpdate);
+    (audioRef.current  as any)?.addEventListener('timeupdate', onAudioTimeUpdate);
     handle && initHandle(handle)
 
     return () => {
@@ -189,10 +184,12 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
     // setHandleList(audioInfo)
     if (isHandle) {
       // next事件
-      const eventHandler = eventQueue.current
-      onNext && onNext()
+      const eventHandler = eventQueue.current;
+      // onNext?.()
       // console.log(eventHandler?.onNext)
       // eventHandler?.onNext?.map(item => item.call(null))
+      // eventQueue.current?.onNext?.forEach(item => item())
+      handle?.onNext?.();
       return
     }
     checkNextByList()
@@ -211,8 +208,6 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
    * 列表切换下一首
    */
   const checkNextByList = () => {
-    console.log('by-list')
-    console.log(playQueue)
     const l = playQueue.length
     if (l === 1) {
       load()
@@ -224,7 +219,6 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
       playByIndex(~~((Math.random() * playQueue.length)))
     } else {
       // 列表
-      console.log('playIndexplayIndex', playIndex)
       const index = playIndex >= l - 1 ? 0 : playIndex + 1
       playByIndex(index)
     }
@@ -235,7 +229,6 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
    * @param nextAudio 切换下一首 
    */
   const cut = (nextAudio: IDaudioPalyInfo) => {
-    console.log(isHandle)
     if (!isHandle) {
       throw Error(`The 【cut】 method can only be executed when the type is handle`)
     }
@@ -256,8 +249,8 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
   }
 
   const ended = () => {
-    console.log(eventQueue)
-    console.log('ended')
+    handle?.onEnded?.();
+    // eventQueue.current?.onEnded?.forEach(item => item())
   }
 
   const load = () => {
@@ -288,7 +281,6 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
     name,
     disc
   } = currentPlayList
-  console.log(currentPlayList)
 
   const mainClass = cls({
     [`d-audio`]: true,
@@ -322,7 +314,7 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
   }
 
   const rangeStyle = {
-    border: `3px solid red`
+    border: `3px solid rgba(0, 0, 0, 0.6)`
   }
 
   const progressStyle = {
@@ -386,43 +378,23 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
   )
 
   return (
-    <div className={classWrapper} onClick={checkAudioType}>
-      { renderCricle() }
-      { renderRect() }
-      <audio className={`${mainClass}-ele`}
-             src={url}
-             ref={audioRef}
-             muted={muted}
-             loop={isLoop}
-             onPlay={onAudioPlay}
-             onEnded={ended}></audio>
-    </div>
+    currentPlayList.url && (
+      <div className={classWrapper} onClick={checkAudioType}>
+        { renderCricle() }
+        { renderRect() }
+        <audio className={`${mainClass}-ele`}
+              src={url}
+              ref={audioRef}
+              muted={muted}
+              loop={isLoop}
+              onPlay={onAudioPlay}
+              onEnded={ended}></audio>
+      </div>
+    ) || null
   )
 }
 
 // export default Daudio
 const AudioComponent = React.forwardRef(Daudio)
 
-function AudioInstance(props: Exclude<IDaudioProps, 'playInfo'>): IDAudio {
-  const AudioRef = React.createRef<IDAudioRef>()
-
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-
-  const a = ReactDOM.render(<AudioComponent {...props} ref={AudioRef}></AudioComponent>, div)
-  console.log('div', div)
-  console.log('a', a)
-  console.log('AudioRef.current', AudioRef.current)
-  
-  const destroy = () => {
-    const unmountResult = ReactDOM.unmountComponentAtNode(div)
-    unmountResult && div.parentNode?.removeChild(div)
-  }
-
-  return {
-    ...AudioRef.current as IDAudioRef,
-    destroy
-  }
-}
-
-export default AudioInstance
+export default AudioComponent
