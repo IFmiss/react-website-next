@@ -12,8 +12,7 @@ import { SET_BING_PAPER } from '@root/store/mutation-types'
 import http from '@root/utils/http'
 import { BING_PAPERS } from '@root/constance/api'
 import { BingPaper } from '.'
-import AudioComponent from '@root/components/Audio'
-import { async } from '@root/_next/static/development/pages/_app'
+import AudioComponent, { IDAudioRef } from '@root/components/Audio'
 import { getUrlById } from '@root/utils/utils'
 
 interface AppProps {}
@@ -39,7 +38,7 @@ class MyApp extends App<AppProps, AppState> {
 
 const AppWrap: React.FC<any> = (props) => {
   const dispatch = useDispatch();
-  const audio = useRef(null);
+  const audio = useRef<IDAudioRef>(null);
   const [musicList, setMusicList] = useState<Array<any>>([]);
   const { bing } = useSelector((state: { base: { bing:  BingPaper[]} }) => state.base)
   const classWrapperString = classNames({

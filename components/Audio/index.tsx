@@ -419,6 +419,6 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
 }
 
 // export default Daudio
-const AudioComponent = React.forwardRef<IDAudioRef>(Daudio)
+const AudioComponent = React.forwardRef(Daudio)
 
 export default AudioComponent
