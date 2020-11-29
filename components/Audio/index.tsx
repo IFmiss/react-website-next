@@ -7,7 +7,6 @@ import PlayIcon from './play.svg'
 import {
   throttle
 } from './utils'
-import { async } from '@root/_next/static/runtime/main'
 const Vibrant = require('node-vibrant');
 
 export type EventType = 'onEnded' | 'onNext'
