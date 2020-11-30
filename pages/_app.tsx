@@ -67,7 +67,7 @@ const AppWrap: React.FC<any> = (props) => {
     const res: any = await http.get('https://daiwei.site/netease/song/detail?ids=' + musicList?.[index]?.id);
     const list = {
       url: getUrlById(res?.songs?.[0]?.id),
-      coverUrl: musicList?.[index]?.al?.picUrl + '?param=300y300',
+      coverUrl: musicList?.[index]?.al?.picUrl + '?param=300y300'.replace(/^http:/, 'https:'),
       name: musicList?.[index]?.name,
       disc: musicList?.[index]?.ar[0]?.name,
     }
