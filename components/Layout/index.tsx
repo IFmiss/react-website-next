@@ -26,7 +26,7 @@ const Layout: NextPage<LayoutProps> = (props) => {
         <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet"/>
         <link rel="shortcut icon" href="https://www.daiwei.site/static/logo/dw.png" type="image/x-icon"></link>
         <link rel="manifest" href="/static/manifest.json"></link>
-        <script src="/static/registerSw.js"></script>
+        {/* <script src="/static/registerSw.js"></script> */}
         <script dangerouslySetInnerHTML={{__html: `var _hmt = _hmt || [];
           (function() {
             var hm = document.createElement("script");

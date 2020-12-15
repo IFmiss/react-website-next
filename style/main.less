@@ -60,6 +60,7 @@
   --primary-opacity-color: @primary-opacity-light;
   --br: @br;
   --code-bg: @light-code-bg;
+  --mask-big-persent: 100%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -76,24 +77,25 @@
     --primary-opacity-color: @primary-opacity-dark;
     --br: @br;
     --code-bg: @dark-code-bg;
+    --mask-big-persent: 76%;
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --shadow-color: @light-shadow-color;
-    --border-color: @light-border-color;
-    --border-color-deep: @light-border-color-deep;
-    --primary-color: @light_main;
-    --text-color: @light-text-color;
-    --text-color-active: @light-text-color-active;
-    --mask-bg: @light-mask-bg;
-    --theme-bg: @light-bg;
-    --bg: transparent;
-    --br: @br;
-    --code-bg: @light-code-bg;
-  }
-}
+// @media (prefers-color-scheme: light) {
+//   :root {
+//     --shadow-color: @light-shadow-color;
+//     --border-color: @light-border-color;
+//     --border-color-deep: @light-border-color-deep;
+//     --primary-color: @light_main;
+//     --text-color: @light-text-color;
+//     --text-color-active: @light-text-color-active;
+//     --mask-bg: @light-mask-bg;
+//     --theme-bg: @light-bg;
+//     --bg: transparent;
+//     --br: @br;
+//     --code-bg: @light-code-bg;
+//   }
+// }
 
 body {
   transition: padding 0.3s, background-color 0.3s;
@@ -177,7 +179,7 @@ body {
     right: 0;
     bottom: 0;
     background-position: center center;
-    background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 10%, rgb(7, 17, 27) 100%);
+    background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0, 0.8) var(--mask-big-persent));
     opacity: 1;
     // -webkit-backdrop-filter: blur(2px);
     // backdrop-filter: blur(2px);

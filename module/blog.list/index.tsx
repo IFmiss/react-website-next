@@ -29,10 +29,6 @@ const BlogList: React.FC<BlogListProps> = ({ list }) => {
   const classString = classNames({
     [`${PROJECT_NAME}-comp-blog-list`]: true
   })
-
-  useEffect(() => {
-    console.info('list', list);
-  }, [])
   
   return (
     <li className={classString}>

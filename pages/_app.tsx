@@ -14,6 +14,7 @@ import { BING_PAPERS } from '@root/constance/api'
 import { BingPaper } from '.'
 import AudioComponent, { IDAudioRef } from '@root/components/Audio'
 import { getUrlById } from '@root/utils/utils'
+import Router from 'next/router'
 
 interface AppProps {}
 interface AppState {}
@@ -36,6 +37,7 @@ class MyApp extends App<AppProps, AppState> {
   }
 }
 
+let cachedScrollPositions: Array<[number, number]> = [];
 const AppWrap: React.FC<any> = (props) => {
   const dispatch = useDispatch();
   const audio = useRef<IDAudioRef>(null);
@@ -60,6 +62,36 @@ const AppWrap: React.FC<any> = (props) => {
     const res: any = await http.get('https://daiwei.site/netease/playlist/detail?id=2179377798');
     setMusicList(res.playlist.tracks);
   }
+  
+  useEffect(() => {
+    // next 返回滚动的bug
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+      let shouldScrollRestore: {
+        x: number,
+        y: number
+      } | boolean;
+
+      Router?.events?.on('routeChangeStart', () => {
+        cachedScrollPositions.push([window.scrollX, window.scrollY]);
+      });
+
+      Router?.events?.on('routeChangeComplete', () => {
+        if (shouldScrollRestore) {
+          const { x, y } = shouldScrollRestore as any;
+          window.scrollTo(x, y);
+          shouldScrollRestore = false;
+        }
+      });
+
+      Router?.beforePopState(() => {
+        const [x, y] = cachedScrollPositions.pop() as any;
+        shouldScrollRestore = { x, y };
+
+        return true;
+      });
+    }
+  }, []);
 
   const checkNext = async(init?: boolean) => {
     // getNext

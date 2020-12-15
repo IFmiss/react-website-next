@@ -354,7 +354,7 @@ const Daudio: React.ForwardRefRenderFunction<IDAudioRef, IDaudioProps> = ({
     return (
       <div className={classCricle}
            title={`${name} - ${disc}`}>
-        <img className={`${classCricle}`} crossOrigin = "anonymous" src={coverUrl}/>
+        <img className={`${classCricle}`} src={coverUrl}/>
         <div className={`${classCricle}-range`} style={rangeStyle}></div>
       </div>
     )
