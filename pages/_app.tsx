@@ -8,10 +8,10 @@ import CopyRight from '@root/components/CopyRight'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 import store from '@store/index'
 import useGrayPage from '@root/use/useGrayPage'
-import { SET_BING_PAPER } from '@root/store/mutation-types'
+// import { SET_BING_PAPER } from '@root/store/mutation-types'
 import http from '@root/utils/http'
-import { BING_PAPERS } from '@root/constance/api'
-import { BingPaper } from '.'
+// import { BING_PAPERS } from '@root/constance/api'
+// import { BingPaper } from '.'
 import AudioComponent, { IDAudioRef } from '@root/components/Audio'
 import { getUrlById } from '@root/utils/utils'
 import Router from 'next/router'
@@ -39,18 +39,18 @@ class MyApp extends App<AppProps, AppState> {
 
 let cachedScrollPositions: Array<[number, number]> = [];
 const AppWrap: React.FC<any> = (props) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const audio = useRef<IDAudioRef>(null);
   const [musicList, setMusicList] = useState<Array<any>>([]);
-  const { bing } = useSelector((state: { base: { bing:  BingPaper[]} }) => state.base)
+  // const { bing } = useSelector((state: { base: { bing:  BingPaper[]} }) => state.base)
   const classWrapperString = classNames({
     [`react-next-wrapper`]: true,
     [`theme-default`]: true,
-    ['bg-bing']: NEED_BING_PATHS.includes(props.router.pathname)
+    // ['bg-bing']: NEED_BING_PATHS.includes(props.router.pathname)
   })
 
   useEffect(() => {
-    initBing();
+    // initBing();
     initMusicList();
   }, [])
 
@@ -110,27 +110,23 @@ const AppWrap: React.FC<any> = (props) => {
     audio?.current?.cut(list);
   }
 
-  const initBing = async () => {
-    if (!!bing?.length) return
-    const res = await http.get(`https://www.daiwei.site/api${BING_PAPERS}`)
-    dispatch({
-      type: SET_BING_PAPER,
-      data: res.result || [],
-    })
-  }
+  // const initBing = async () => {
+  //   if (!!bing?.length) return
+  //   const res = await http.get(`https://www.daiwei.site/api${BING_PAPERS}`)
+  //   dispatch({
+  //     type: SET_BING_PAPER,
+  //     data: res.result || [],
+  //   })
+  // }
 
   const { Component, pageProps } = props
   return (
     <>
-      {
-        bing?.length && bing[0]?.url && (
-          <div className='fixed-paper' style={{
-            backgroundImage: `url(${bing?.length && bing[0]?.url})`
-          }}>
-            <div className='mask'></div>
-          </div>
-        ) || null
-      }
+      <div className='fixed-paper' style={{
+        backgroundImage: `url('https://bing.getlove.cn/bingImage')`
+      }}>
+        <div className='mask'></div>
+      </div>
       <div className={`${classWrapperString}`} id='dw-next-container'>
         <div className='react-next-content'>
           <header>

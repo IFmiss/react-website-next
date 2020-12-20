@@ -23,9 +23,14 @@ const Layout: NextPage<LayoutProps> = (props) => {
         <meta name="description" content={props.desc}/>
         <meta name="Keywords" content={props.keywords}/>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet"/>
+        <link rel="preconnect" href="//fonts.googleapis.com"/>
+        <link rel="preconnect" href="//bing.getlove.cn"/>
+        <link rel="preconnect" href="//hm.baidu.com" crossOrigin='use-credentials'/>
+        <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+        <link rel="dns-prefetch" href="//hm.baidu.com"/>
+        <link rel="dns-prefetch" href="//bing.getlove.cn"/>
         <link rel="shortcut icon" href="https://www.daiwei.site/static/logo/dw.png" type="image/x-icon"></link>
-        <link rel="manifest" href="/static/manifest.json"></link>
+        {/* <link rel="manifest" href="/static/manifest.json"></link> */}
         {/* <script src="/static/registerSw.js"></script> */}
         <script dangerouslySetInnerHTML={{__html: `var _hmt = _hmt || [];
           (function() {
@@ -38,6 +43,7 @@ const Layout: NextPage<LayoutProps> = (props) => {
       <div id="dw-react-web-container" className={classStringContainer}>
         {props.children}
       </div>
+      <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet"/>
     </>
   )
 }
