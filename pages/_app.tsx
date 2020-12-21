@@ -8,11 +8,7 @@ import CopyRight from '@root/components/CopyRight'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 import store from '@store/index'
 import useGrayPage from '@root/use/useGrayPage'
-// import { SET_BING_PAPER } from '@root/store/mutation-types'
 import http from '@root/utils/http'
-// import { BING_PAPERS } from '@root/constance/api'
-// import { BingPaper } from '.'
-import AudioComponent, { IDAudioRef } from '@root/components/Audio'
 import { getUrlById } from '@root/utils/utils'
 import Router from 'next/router'
 
@@ -39,30 +35,11 @@ class MyApp extends App<AppProps, AppState> {
 
 let cachedScrollPositions: Array<[number, number]> = [];
 const AppWrap: React.FC<any> = (props) => {
-  // const dispatch = useDispatch();
-  const audio = useRef<IDAudioRef>(null);
-  const [musicList, setMusicList] = useState<Array<any>>([]);
-  // const { bing } = useSelector((state: { base: { bing:  BingPaper[]} }) => state.base)
   const classWrapperString = classNames({
     [`react-next-wrapper`]: true,
-    [`theme-default`]: true,
-    // ['bg-bing']: NEED_BING_PATHS.includes(props.router.pathname)
+    [`theme-default`]: true
   })
 
-  useEffect(() => {
-    // initBing();
-    initMusicList();
-  }, [])
-
-  useEffect(() => {
-    musicList.length && checkNext(true);
-  }, [musicList])
-
-  const initMusicList = async () => {
-    const res: any = await http.get('https://daiwei.site/netease/playlist/detail?id=2179377798');
-    setMusicList(res.playlist.tracks);
-  }
-  
   useEffect(() => {
     // next 返回滚动的bug
     if ('scrollRestoration' in window.history) {
@@ -93,32 +70,6 @@ const AppWrap: React.FC<any> = (props) => {
     }
   }, []);
 
-  const checkNext = async(init?: boolean) => {
-    // getNext
-    let index = Math.floor(Math.random() * musicList.length)
-    const res: any = await http.get('https://daiwei.site/netease/song/detail?ids=' + musicList?.[index]?.id);
-    const list = {
-      url: getUrlById(res?.songs?.[0]?.id),
-      coverUrl: musicList?.[index]?.al?.picUrl + '?param=300y300'.replace(/^http:/, 'https:'),
-      name: musicList?.[index]?.name,
-      disc: musicList?.[index]?.ar[0]?.name,
-    }
-    if (init) {
-      audio?.current?.setPlayList([list]);
-      return;
-    }
-    audio?.current?.cut(list);
-  }
-
-  // const initBing = async () => {
-  //   if (!!bing?.length) return
-  //   const res = await http.get(`https://www.daiwei.site/api${BING_PAPERS}`)
-  //   dispatch({
-  //     type: SET_BING_PAPER,
-  //     data: res.result || [],
-  //   })
-  // }
-
   const { Component, pageProps } = props
   return (
     <>
@@ -135,10 +86,6 @@ const AppWrap: React.FC<any> = (props) => {
           <section>
             <Component {...pageProps} />
           </section>
-          <AudioComponent ref={audio} handle={{
-            onEnded: checkNext,
-            onNext: checkNext
-          }}></AudioComponent>
           <CopyRight/>
         </div>
       </div>
