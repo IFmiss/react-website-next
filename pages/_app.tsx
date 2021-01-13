@@ -43,7 +43,7 @@ const AppWrap: React.FC<any> = (props) => {
   useEffect(() => {
     // next 返回滚动的bug
     if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+      // window.history.scrollRestoration = 'manual';
       let shouldScrollRestore: {
         x: number,
         y: number
@@ -74,7 +74,8 @@ const AppWrap: React.FC<any> = (props) => {
   return (
     <>
       <div className='fixed-paper' style={{
-        backgroundImage: `url('https://bing.getlove.cn/bingImage')`
+        backgroundImage: `url('https://bing.getlove.cn/bingImage')`,
+        opacity: '1'
       }}>
         <div className='mask'></div>
       </div>

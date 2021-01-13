@@ -68,6 +68,10 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
             renderers={{
               code: CodeBlock
             }}/>
+          <a className={`${classString}-edit`}
+            href={`https://github.com/IFmiss/blog/blob/master/source/_posts/${detail.name}.md`}>
+            ✏️ 如有问题，欢迎指正 
+          </a>
           <div className={`${classString}-entry`}>
             {
               prev?.id ? (

@@ -43,11 +43,7 @@ const Layout: NextPage<LayoutProps> = (props) => {
       <div id="dw-react-web-container" className={classStringContainer}>
         {props.children}
       </div>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" media="none" onLoad={(rel) => {
-        if (rel.currentTarget.media != 'all') {
-          rel.currentTarget.media = 'all'
-        }
-      }}/>  
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat&display=swap"></link>
     </>
   )
 }
