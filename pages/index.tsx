@@ -4,7 +4,7 @@ import {
   NextPage
 } from 'next'
 import classNames from 'classnames'
-import { PROJECT_NAME, HOME_LINK_LISTS } from '@root/constance'
+import { PROJECT_NAME, HOME_LINK_LISTS, PAGE_LAYOUT_SEO } from '@root/constance'
 import Link from 'next/link'
 import './index.less'
 
@@ -29,7 +29,7 @@ const Home: NextPage<HomePorps, {}> = () => {
   })
 
   return (
-    <Layout>
+    <Layout {...PAGE_LAYOUT_SEO.home}>
       <div className={classString}>
         <p className='home-tip'>
           基于 next.js 的第四版本个人网站

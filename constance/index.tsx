@@ -115,3 +115,31 @@ export const HOME_LINK_LISTS: Array<{
   title: 'code-diff',
   self: false
 },]
+
+
+export const PAGE_LAYOUT_SEO = {
+  home: {
+    title: 'hello',
+    desc: '123123',
+    keywords: [
+      '123',
+      '212312'
+    ].toString()
+  },
+  blogList: {
+    title: 'hello',
+    desc: '123123',
+    keywords: [
+      '123',
+      '212312'
+    ].toString()
+  },
+  friendChain: {
+    title: 'hello',
+    desc: '123123',
+    keywords: [
+      '123',
+      '212312'
+    ].toString()
+  }
+}

@@ -8,6 +8,7 @@ import BlogList, {
 } from '@module/blog.list'
 import classNames from 'classnames'
 import {
+  PAGE_LAYOUT_SEO,
   PROJECT_NAME
 } from '@constance/index'
 
@@ -51,7 +52,7 @@ const Blog: NextPage<BlogProps, {}> = (props) => {
 
 
   return (
-    <Layout>
+    <Layout {...PAGE_LAYOUT_SEO.blogList}>
       <div className={classString}>
         {
           lists && lists.length && lists.map(item => (
