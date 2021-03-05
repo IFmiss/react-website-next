@@ -32,13 +32,6 @@ const Layout: NextPage<LayoutProps> = (props) => {
         <link rel="shortcut icon" href="https://www.daiwei.site/static/logo/dw.png" type="image/x-icon"></link>
         {/* <link rel="manifest" href="/static/manifest.json"></link> */}
         {/* <script src="/static/registerSw.js"></script> */}
-        <script dangerouslySetInnerHTML={{__html: `var _hmt = _hmt || [];
-          (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?4891762caa4614e822838c9c3d7f4dd3";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-          })();`}}></script>
       </Head>
       <div id="dw-react-web-container" className={classStringContainer}>
         {props.children}

@@ -74,8 +74,7 @@ const AppWrap: React.FC<any> = (props) => {
   return (
     <>
       <div className='fixed-paper' style={{
-        backgroundImage: `url('https://bing.getlove.cn/bingImage')`,
-        opacity: '1'
+        backgroundImage: `url('https://bing.getlove.cn/bingImage')`
       }}>
         <div className='mask'></div>
       </div>

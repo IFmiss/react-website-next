@@ -19,6 +19,7 @@ export interface IBlogList {
   categorie: BlogListCategorieOrTag[];
   tagLists: BlogListCategorieOrTag[];
   contentLite: string;
+  tid: string;
 }
 
 interface BlogListProps {

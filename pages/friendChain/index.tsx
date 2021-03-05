@@ -7,15 +7,20 @@ import {
 import classNames from 'classnames'
 import { PROJECT_NAME, HOME_LINK_LISTS, PAGE_LAYOUT_SEO } from '@root/constance'
 import http from '@utils/req'
-import Link from 'next/link'
 import {
   FRIEND_CHAIN
 } from '@constance/api'
+import NoneText from '@root/components/NoneText';
 
 // import PropTypes from 'prop-types';
 
 export interface FriendChainProps {
-  friendChain: any[];
+  friendChain: Array<{
+    disc: string;
+    id: number;
+    name: string;
+    url: string;
+  }>;
 }
 
 const FriendChain: NextPage<FriendChainProps> = ({
@@ -31,8 +36,19 @@ const FriendChain: NextPage<FriendChainProps> = ({
 
   return (
     <Layout {...PAGE_LAYOUT_SEO.friendChain}>
+      <h3 className='page-title'>友情链接 👬</h3>
       <div className={classString}>
-        <div>this is friendChain</div>
+        {
+          friendChain?.length ? (
+            friendChain.map(item => (
+              <div className='friend-chain-item' key={item.id}>
+                <a href={item.url}>{item.name}</a>
+              </div>
+            ))
+          ) : (
+            <NoneText/>
+          )
+        }
       </div>
     </Layout>
   );

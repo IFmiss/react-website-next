@@ -7,26 +7,57 @@ import classNames from 'classnames'
 import { PROJECT_NAME, HOME_LINK_LISTS, PAGE_LAYOUT_SEO } from '@root/constance'
 import Link from 'next/link'
 import './index.less'
+import http from '@utils/req'
+import NoneText from '@root/components/NoneText'
+import { HOME_ROUTERS } from '@root/constance/api'
 
-export interface BingPaper {
-  startdate: string,
-  fullstartdate: string,
-  enddate: string,
-  url: string,
-  urlbase: string,
-  copyright: string,
-  copyrightlink: string,
-  title: string,
+// export interface BingPaper {
+//   startdate: string,
+//   fullstartdate: string,
+//   enddate: string,
+//   url: string,
+//   urlbase: string,
+//   copyright: string,
+//   copyrightlink: string,
+//   title: string,
+// }
+
+interface RouterItem {
+  id: number;
+  imgSrc: string;
+  name: string;
+  type: number
+  url: string;
+  visible: 0 | 1;
 }
 
 interface HomePorps {
-  bing: BingPaper[]
+  // bing: BingPaper[];
+  routes: Array<RouterItem>;
 }
 
-const Home: NextPage<HomePorps, {}> = () => {
+const Home: NextPage<HomePorps, {}> = ({
+  routes
+}) => {
+  console.info('routes', routes);
   const classString = classNames({
     [`${PROJECT_NAME}-home`]: true
   })
+
+  const renderLinkContent = (item: RouterItem) => {
+    return (
+      <a key={item.id} href={item.url} className='href-tip'>
+        {
+          item?.imgSrc ? (
+            item?.imgSrc.indexOf('http') === 0 ? (
+              <img src={item.imgSrc} alt=""/>
+            ) : <div className='inner-img' dangerouslySetInnerHTML={{__html: item.imgSrc}}/>
+          ) : null
+        }
+        {item.name}
+      </a>
+    )
+  }
 
   return (
     <Layout {...PAGE_LAYOUT_SEO.home}>
@@ -36,19 +67,18 @@ const Home: NextPage<HomePorps, {}> = () => {
         </p>
         <div className='tip-lists'>
           {
-            HOME_LINK_LISTS.map((item, index) => (
-              item.self ? (
-                <Link key={index} href={item.href}>
-                  <a className='href-tip'>{item.title}</a>
-                </Link>
-              ) : (
-                <a key={index} className='href-tip' href={item.href}>
-                  <span>{typeof item.title == 'function'
-                    ? item.title()
-                    : item.title}</span>
-                </a>
-              )
-            ))
+            routes?.length ? (
+              routes.map(item => (
+                item?.url.indexOf('http') === 0 ? (
+                  // 外部链接
+                  renderLinkContent(item)
+                ) : (
+                  <Link key={item.id} href={item.url}>
+                    { renderLinkContent(item) }
+                  </Link>
+                )
+              ))
+            ) : <NoneText/>
           }
         </div>
       </div>
@@ -57,8 +87,9 @@ const Home: NextPage<HomePorps, {}> = () => {
 }
 
 Home.getInitialProps = async () => {
+  const res = await http.get(`${HOME_ROUTERS}`);
   return {
-    name: 'home'
+    routes: res?.data?.result ?? []
   }
 }
 

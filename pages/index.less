@@ -1,7 +1,7 @@
-@text-color: rgba(255, 255, 255, 0.66);
+@tip-height: 28px;
 .@{project-prefix}-home {
   padding: 16px;
-  color: @text-color;
+  color: var(--home-href-text);
   .home-tip {
     margin: 30px 0;
   }
@@ -11,7 +11,7 @@
     flex-wrap: wrap;
     .href-tip {
       width: auto;
-      line-height: 28px;
+      line-height: @tip-height;
       border-radius: 14px;
       font-size: 14px;
       background: rgba(244, 244, 244, 0.2);
@@ -27,7 +27,13 @@
       span {
         display: flex;
         align-items: center;
-        height: 28px;
+        height: @tip-height;
+      }
+      .inner-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: @tip-height;
       }
     }
   }
@@ -38,7 +44,7 @@
 
   a, a:active, a:hover, a:focus {
     text-decoration: none;
-    color: @text-color;
+    color: var(--home-href-text);
   }
 
   a {
@@ -47,5 +53,5 @@
 }
 
 .react-next-web-nav-home .nav-content .nav-logo .nav-title {
-  color: @text-color;
+  color: var(--home-href-text);
 }

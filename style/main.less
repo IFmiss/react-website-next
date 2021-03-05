@@ -20,12 +20,12 @@
 @dark-border-color-deep: rgba(222, 222, 222, 0.2);
 
 // 文字颜色
-@light-text-color: #c1c1c1;
-@dark-text-color: #aaa;
+@light-text-color: #e0e0e0;
+@dark-text-color: #cfcfcf;
 
 // 文字高亮颜色
-@light-text-color-active: #eee;
-@dark-text-color-active: #eee;
+@light-text-color-active: rgb(198, 252, 223);
+@dark-text-color-active: rgb(243, 209, 209);
 
 // 背景色
 // @light-bg: #fff;
@@ -45,7 +45,7 @@
 
 // 注册透明
 @primary-opacity-light: rgba(34, 180, 124, 0.522);
-@primary-opacity-dark: rgba(255, 192, 203, 0.822);
+@primary-opacity-dark: rgba(255, 192, 203, 0.522);
 
 :root {
   --shadow-color: @light-shadow-color;
@@ -61,6 +61,8 @@
   --br: @br;
   --code-bg: @light-code-bg;
   --mask-big-persent: 100%;
+  --home-href-text: rgba(255, 255, 255, 0.66);
+  --bing-opacity: 0.5;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -78,6 +80,8 @@
     --br: @br;
     --code-bg: @dark-code-bg;
     --mask-big-persent: 76%;
+    --home-href-text: rgba(255, 255, 255, 0.66);
+    --bing-opacity: 0.3;
   }
 }
 
@@ -108,6 +112,10 @@ body {
       transform: translateX(-10px);
     }
   }
+  .page-title {
+    color: var(--text-color-active);
+    text-indent: 16px;
+  }
 }
 
 #dw-react-web-container {
@@ -126,24 +134,6 @@ body {
   }
 }
 
-// 图片查看器
-#zmage {
-  #zmageBackground {
-    background: var(--bg)!important;
-  }
-  #zmageControlPagination {
-    #zmageControlPaginationActive {
-      background: var(--primary-color);
-    }
-  }
-  #zmageControl, #zmageControlFlipLeft, #zmageControlFlipRight, #zmageControlPagination {
-    background: var(--mask-bg)!important;
-    svg {
-      fill: var(--text-color);
-    }
-  }
-}
-
 // bing
 .fixed-paper {
   width: 100vw;
@@ -156,6 +146,7 @@ body {
   right: 0;
   bottom: 0;
   object-fit: contain;
+  opacity: var(--bing-opacity);
   .mask {
     position: absolute;
     top: 0;
@@ -163,7 +154,7 @@ body {
     right: 0;
     bottom: 0;
     background-position: center center;
-    background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0, 0.8) var(--mask-big-persent));
+    // background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0, 0.8) var(--mask-big-persent));
     opacity: 1;
     // -webkit-backdrop-filter: blur(2px);
     // backdrop-filter: blur(2px);
