@@ -4,7 +4,7 @@ import {
   NextPage
 } from 'next'
 import classNames from 'classnames'
-import { PROJECT_NAME, HOME_LINK_LISTS, PAGE_LAYOUT_SEO } from '@root/constance'
+import { PROJECT_NAME, PAGE_LAYOUT_SEO } from '@root/constance'
 import Link from 'next/link'
 import './index.less'
 import http from '@utils/req'
