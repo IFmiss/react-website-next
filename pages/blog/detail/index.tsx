@@ -16,7 +16,7 @@ import './detail.less'
 import CodeBlock from "@components/CodeBlock";
 import Link from 'next/link'
 
-import { 
+import {
   IStore
 } from '@store/types';
 import MainAction from '@root/store/actions/index'
@@ -70,7 +70,7 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
             }}/>
           <a className={`${classString}-edit`}
             href={`https://github.com/IFmiss/blog/blob/master/source/_posts/${detail.name}.md`}>
-            ✏️ 如有问题，欢迎指正 
+            ✏️ 如有问题，欢迎指正
           </a>
           <div className={`${classString}-entry`}>
             {
@@ -101,12 +101,12 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
 }
 
 BlogDetail.getInitialProps = async (ctx) => {
-  const { id }  = ctx.query
-  
-  // 更新阅览数  不阻塞
-  http.get(`${UPDATE_ARTICLE_COUNT}/${id}`)
+  const { tid }  = ctx.query
 
-  const { data } = await http.get(`${ARTICLE_DETAIL}/${id}`)
+  // 更新阅览数  不阻塞
+  http.get(`${UPDATE_ARTICLE_COUNT}/${tid}`)
+
+  const { data } = await http.get(`${ARTICLE_DETAIL}/${tid}`)
   return {
     detail: data.result && data.result.detail || {},
     next: data.result && data.result.next || null,
@@ -115,7 +115,7 @@ BlogDetail.getInitialProps = async (ctx) => {
   }
 }
 
-const mapState = (state: IStore) => ({ 
+const mapState = (state: IStore) => ({
   containerEle: state.base.containerEle
  })
 

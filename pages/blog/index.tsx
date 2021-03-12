@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   NextPage
 } from 'next'
@@ -13,10 +13,10 @@ import {
 } from '@constance/index'
 
 import {
-  ARTICLE_LISTS
+  ARTICLE_LISTS, ARTICLE_TAG_COUNT
 } from '@constance/api'
 
-import { 
+import {
   IStore
 } from '@store/types';
 
@@ -34,28 +34,57 @@ interface BlogListReqData {
   type: string
 }
 
+interface ITags {
+  id: number;
+  num: number;
+  name: string;
+}
+
 interface BlogProps {
-  blogInfo: BlogListReqData
-  containerEle: any,
-  setContainerEle: (ele: any) => void
+  blogInfo: BlogListReqData;
+  containerEle: any;
+  setContainerEle: (ele: any) => void;
+  tags: ITags[];
 }
 
 const Blog: NextPage<BlogProps, {}> = (props) => {
-  const { blogInfo: { lists } } = props
+  const { blogInfo: { lists }, tags } = props
+  const [type, setType] = useState(-1);
   const classString = classNames({
     [`${PROJECT_NAME}-blog`]: true
   })
 
   useEffect(() => {
-    props.setContainerEle('a')
+    props.setContainerEle('a');
+    console.info('tags', tags);
   }, [])
+
+  const filterLists = useMemo(() => {
+    if (type === -1) {
+      return lists;
+    } else {
+      return lists?.filter(item => item.tagLists.some(tag => tag.id === type))
+    }
+  }, [type, lists])
 
 
   return (
     <Layout {...PAGE_LAYOUT_SEO.blogList}>
+      <div className={'list-tag-fix'}>
+        <div className={'filter-bg'}></div>
+        <ul>
+          {
+            tags?.map (item => (
+              <li key={item.id} className={item.id === type ? 'active' : ''} onClick={() => {
+                setType(item.id)
+              }}>{item.name} ({item.num})</li>
+            ))
+          }
+        </ul>
+      </div>
       <div className={classString}>
         {
-          lists && lists.length && lists.map(item => (
+          filterLists?.map(item => (
             <BlogList list={item} key={item.id}/>
           ))
         }
@@ -68,13 +97,19 @@ Blog.getInitialProps = async (ctx) => {
   const res = await http.get(`${ARTICLE_LISTS}`, {
     params: { page: '0', size: '666', type: '全部' }
   })
+  const tags = await http.get(ARTICLE_TAG_COUNT)
   return {
-    blogInfo: res.data && res.data.result || {},
-    name: 'blogList'
+    blogInfo: res?.data?.result ?? {},
+    name: 'blogList',
+    tags: [{
+      id: -1,
+      name: '全部',
+      num: res?.data?.result.total
+    }].concat(tags?.data?.result ?? [])
   }
 }
 
-const mapState = (state: IStore) => ({ 
+const mapState = (state: IStore) => ({
   containerEle: state.base.containerEle
  })
 

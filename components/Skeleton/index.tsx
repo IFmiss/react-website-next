@@ -13,7 +13,6 @@ export interface SkeletonProps {
 const Skeleton: React.FC<SkeletonProps> = ({
   routerName
 }) => {
-  console.info(routerName);
   return (
     <div>123123</div>
   );

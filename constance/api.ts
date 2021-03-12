@@ -1,10 +1,8 @@
 // 文章列表
 export const ARTICLE_LISTS = `/article/lists`
-
-// 文章详情
-export const ARTICLE_DETAIL = `/article/detail`
-
 // 更新文章阅读量
+export const ARTICLE_DETAIL = `/article/list`
+export const ARTICLE_TAG_COUNT = '/article/tagListAndCount'
 export const UPDATE_ARTICLE_COUNT = `/article/updateReadCount`
 
 // bing 壁纸

@@ -6,7 +6,7 @@ import './list.less'
 import { fmtTime } from '@root/utils/utils'
 
 export interface BlogListCategorieOrTag {
-  id: string;
+  id: number;
   name: string;
 }
 
@@ -30,10 +30,10 @@ const BlogList: React.FC<BlogListProps> = ({ list }) => {
   const classString = classNames({
     [`${PROJECT_NAME}-comp-blog-list`]: true
   })
-  
+
   return (
     <li className={classString}>
-      <Link href={`/blog/detail?id=${list.id}`}>
+      <Link href={`/blog/detail?tid=${list.tid}`}>
         <a title={list.name}>
           <h2 className={`${classString}-title`}>{list.name}</h2>
           <div className={`${classString}-info`}>
