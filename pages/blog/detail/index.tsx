@@ -42,6 +42,7 @@ interface IBlogDetail {
 interface IBlogPrevNext {
   id: string | null;
   name: string | null;
+  tid: string | null;
 }
 
 interface BlogDetailProps {
@@ -75,8 +76,8 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
           <div className={`${classString}-entry`}>
             {
               prev?.id ? (
-                <Link href={`/blog/detail?id=${prev.id}`}>
-                  <a href={`/blog/detail?id=${prev.id}`} className={`${classString}-entry-prev`}
+                <Link href={`/blog/detail?id=${prev.tid}`}>
+                  <a className={`${classString}-entry-prev`}
                       title={prev.name || ''}>
                     { prev.name ? `上一篇 : ${prev.name}` : '' }
                   </a>
@@ -85,12 +86,12 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
             }
             {
               next?.id ? (
-                <Link href={`/blog/detail?id=${next.id}`}>
+                <Link href={`/blog/detail?id=${next.tid}`}>
                   <a className={`${classString}-entry-next`}
                       title={next.name || ''}>
                     { next.name ? `下一篇 : ${next.name}` : '' }
                   </a>
-                </Link >
+                </Link>
               ) : null
             }
           </div>
