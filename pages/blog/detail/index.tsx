@@ -76,7 +76,7 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
           <div className={`${classString}-entry`}>
             {
               prev?.id ? (
-                <Link href={`/blog/detail?id=${prev.tid}`}>
+                <Link href={`/blog/detail?tid=${prev.tid}`}>
                   <a className={`${classString}-entry-prev`}
                       title={prev.name || ''}>
                     { prev.name ? `上一篇 : ${prev.name}` : '' }
@@ -86,7 +86,7 @@ const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
             }
             {
               next?.id ? (
-                <Link href={`/blog/detail?id=${next.tid}`}>
+                <Link href={`/blog/detail?tid=${next.tid}`}>
                   <a className={`${classString}-entry-next`}
                       title={next.name || ''}>
                     { next.name ? `下一篇 : ${next.name}` : '' }
