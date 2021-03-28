@@ -39,7 +39,6 @@ interface HomePorps {
 const Home: NextPage<HomePorps, {}> = ({
   routes
 }) => {
-  console.info('routes', routes);
   const classString = classNames({
     [`${PROJECT_NAME}-home`]: true
   })

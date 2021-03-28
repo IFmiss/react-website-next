@@ -56,7 +56,6 @@ const Blog: NextPage<BlogProps, {}> = (props) => {
 
   useEffect(() => {
     props.setContainerEle('a');
-    console.info('tags', tags);
   }, [])
 
   const filterLists = useMemo(() => {

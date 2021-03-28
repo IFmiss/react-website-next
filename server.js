@@ -26,7 +26,6 @@ app.prepare().then(() => {
   router.get('*', (req, res) => handle(req, res))
 
   server.use(async (ctx, next) => {
-    console.log('statusCode', ctx)
     await handle(ctx.req, ctx.res)
     ctx.respond = false
   })

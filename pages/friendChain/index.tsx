@@ -29,10 +29,6 @@ const FriendChain: NextPage<FriendChainProps> = ({
   const classString = classNames({
     [`${PROJECT_NAME}-friend-chain`]: true
   });
-  
-  useEffect(() => {
-    console.info('friendChain', friendChain);
-  });
 
   return (
     <Layout {...PAGE_LAYOUT_SEO.friendChain}>

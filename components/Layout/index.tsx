@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect } from 'react'
 import classNames from 'classnames'
 import { NextPage } from 'next'
 import { TITLE, DESC, KEYWORDS } from '@root/constance'
@@ -14,7 +14,8 @@ interface LayoutProps {
 const Layout: NextPage<LayoutProps> = (props) => {
   const classStringContainer = classNames({
     'dw-page-router': true
-  })
+  });
+
   return (
     <>
       <Head>

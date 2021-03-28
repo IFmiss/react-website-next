@@ -3,7 +3,6 @@ import {
 } from 'next'
 
 const Error: NextPage<any, any> = (props) => {
-  console.log('err', props)
   return (
     <p>
       {props.statusCode
