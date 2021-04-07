@@ -14,6 +14,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "@moxy/next-router-scroll": "^2.1.1",
     "@types/react-lazyload": "^2.6.0",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import {
   NextPage
 } from 'next'
@@ -20,6 +20,7 @@ import {
   IStore
 } from '@store/types';
 import MainAction from '@root/store/actions/index'
+import { useRouterScroll } from '@moxy/next-router-scroll';
 import { connect } from 'react-redux'
 
 interface IBlogListCategorieOrTag {
@@ -52,6 +53,11 @@ interface BlogDetailProps {
 }
 
 const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
+  const { updateScroll } = useRouterScroll();
+  useLayoutEffect(() => {
+    updateScroll();
+  }, []);
+
   const { detail, prev, next } = props
   const classString = classNames({
     [`${PROJECT_NAME}-blog-detail`]: true

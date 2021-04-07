@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import {
   NextPage
 } from 'next'
@@ -21,7 +21,7 @@ import {
 } from '@store/types';
 
 import Action from '@root/store/actions/index'
-
+import { useRouterScroll } from '@moxy/next-router-scroll';
 import './blog.less'
 import http from '@utils/req'
 import { connect } from 'react-redux'
@@ -50,12 +50,17 @@ interface BlogProps {
 const Blog: NextPage<BlogProps, {}> = (props) => {
   const { blogInfo: { lists }, tags } = props
   const [type, setType] = useState(-1);
+  const { updateScroll } = useRouterScroll();
   const classString = classNames({
     [`${PROJECT_NAME}-blog`]: true
   })
 
   useEffect(() => {
     props.setContainerEle('a');
+  }, [])
+
+  useLayoutEffect(() => {
+    updateScroll();
   }, [])
 
   const filterLists = useMemo(() => {
