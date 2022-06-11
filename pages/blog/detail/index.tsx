@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react'
+import React, { useEffect } from 'react'
 import {
   NextPage
 } from 'next'
@@ -54,7 +54,7 @@ interface BlogDetailProps {
 
 const BlogDetail: NextPage<BlogDetailProps, {}> = (props) => {
   const { updateScroll } = useRouterScroll();
-  useLayoutEffect(() => {
+  useEffect(() => {
     updateScroll();
   }, []);
 

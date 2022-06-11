@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   NextPage
 } from 'next'
@@ -59,7 +59,7 @@ const Blog: NextPage<BlogProps, {}> = (props) => {
     props.setContainerEle('a');
   }, [])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     updateScroll();
   }, [])
 
